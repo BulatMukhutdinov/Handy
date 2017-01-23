@@ -10,6 +10,7 @@ public class AppController {
     public String index() {
         return "home";
     }
+
     @RequestMapping(value = {"/hello"})
     public String hello() {
         return "hello";

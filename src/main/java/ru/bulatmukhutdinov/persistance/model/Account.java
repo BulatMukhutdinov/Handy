@@ -1,4 +1,4 @@
-package ru.bulatmukhutdinov.model;
+package ru.bulatmukhutdinov.persistance.model;
 
 import javax.persistence.*;
 
