@@ -5,19 +5,27 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.bulatmukhutdinov.persistance.model.Account;
 import ru.bulatmukhutdinov.repository.AccountRepository;
+import ru.bulatmukhutdinov.repository.RoleRepository;
+
+import java.util.HashSet;
 
 
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
     private AccountRepository accountRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
+
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    public void save(Account user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        accountRepository.save(user);
+    public void save(Account account) {
+        account.setPassword(bCryptPasswordEncoder.encode(account.getPassword()));
+        account.setRoles(new HashSet<>(roleRepository.findAll()));
+        accountRepository.save(account);
     }
 
     @Override
