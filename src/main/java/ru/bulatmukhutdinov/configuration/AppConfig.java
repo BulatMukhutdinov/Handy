@@ -49,10 +49,12 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     @Bean
     public ResourceBundleMessageSource messageSource() {
         ResourceBundleMessageSource source = new ResourceBundleMessageSource();
+        source.setDefaultEncoding("UTF-8");
         source.setBasenames("i18n/messages");
         source.setUseCodeAsDefaultMessage(true);
         return source;
     }
+
     @Override
     public void configureDefaultServletHandling(
             DefaultServletHandlerConfigurer configurer) {
