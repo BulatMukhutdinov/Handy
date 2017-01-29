@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.bulatmukhutdinov.persistance.model.Account;
 import ru.bulatmukhutdinov.persistance.model.Role;
-import ru.bulatmukhutdinov.repository.AccountRepository;
+import ru.bulatmukhutdinov.persistance.dao.AccountRepository;
 
 import java.util.HashSet;
 import java.util.Set;

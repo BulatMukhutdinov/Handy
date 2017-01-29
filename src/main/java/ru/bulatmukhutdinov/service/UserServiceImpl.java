@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.bulatmukhutdinov.persistance.model.Account;
-import ru.bulatmukhutdinov.repository.AccountRepository;
-import ru.bulatmukhutdinov.repository.RoleRepository;
+import ru.bulatmukhutdinov.persistance.dao.AccountRepository;
+import ru.bulatmukhutdinov.persistance.dao.RoleRepository;
 
 import java.util.HashSet;
 
