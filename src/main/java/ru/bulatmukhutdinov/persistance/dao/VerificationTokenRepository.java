@@ -13,7 +13,7 @@ public interface VerificationTokenRepository extends JpaRepository<VerificationT
 
     VerificationToken findByToken(String token);
 
-    VerificationToken findByUser(Account account);
+    VerificationToken findByAccount(Account account);
 
     Stream<VerificationToken> findAllByExpiryDateLessThan(Date now);
 
