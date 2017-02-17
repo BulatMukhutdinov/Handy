@@ -1,4 +1,4 @@
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
 <title th:text="#{label.pages.home.title}">home</title>
@@ -15,19 +15,19 @@
     </div>
 </nav>
 
-    <div class="container">
-	    <div sec:authorize="hasAuthority('WRITE_PRIVILEGE')" th:text="#{label.pages.user.message}">user</div>
-	
-	    <div sec:authorize="hasAuthority('WRITE_PRIVILEGE')" th:text="#{label.pages.admin.message}"></div>
-	     
-	    <p th:text="${param.user[0]}">user</p>
-	     
-	    <a class="btn btn-default" th:href="@{/admin.html}" th:text="#{label.pages.admin}">admin</a>
-		<br /> <br />
-	    <a th:href="@{/loggedUsers}" th:text="#{label.pages.accounts.message}">View logged in accounts</a>
-		<br />	    
-	    <a th:href="@{/loggedUsersFromSessionRegistry}" th:text="#{label.pages.accounts.sessionregistry.message}">View logged in accounts</a>
-	    
-    </div>
+    <!--<div class="container">-->
+	    <!--<div sec:authorize="hasAuthority('WRITE_PRIVILEGE')" th:text="#{label.pages.user.message}">user</div>-->
+	<!---->
+	    <!--<div sec:authorize="hasAuthority('WRITE_PRIVILEGE')" th:text="#{label.pages.admin.message}"></div>-->
+	     <!---->
+	    <!--<p th:text="${param.user[0]}">user</p>-->
+	     <!---->
+	    <!--<a class="btn btn-default" th:href="@{/admin.html}" th:text="#{label.pages.admin}">admin</a>-->
+		<!--<br /> <br />-->
+	    <!--<a th:href="@{/loggedUsers}" th:text="#{label.pages.accounts.message}">View logged in accounts</a>-->
+		<!--<br />	    -->
+	    <!--<a th:href="@{/loggedUsersFromSessionRegistry}" th:text="#{label.pages.accounts.sessionregistry.message}">View logged in accounts</a>-->
+	    <!---->
+    <!--</div>-->
 </body>
 </html>

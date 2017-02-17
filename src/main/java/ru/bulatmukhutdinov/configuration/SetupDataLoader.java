@@ -53,15 +53,15 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         createRoleIfNotFound("ROLE_ADMIN", adminPrivileges);
         createRoleIfNotFound("ROLE_USER", Arrays.asList(readPrivilege, passwordPrivilege));
 
-        final Role adminRole = roleRepository.findByName("ROLE_ADMIN");
-        final Account account = new Account();
-        account.setFirstName("Test");
-        account.setLastName("Test");
-        account.setPassword(passwordEncoder.encode("test"));
-        account.setEmail("test@test.com");
-        account.setRoles(Arrays.asList(adminRole));
-        account.setEnabled(true);
-        accountRepository.save(account);
+//        final Role adminRole = roleRepository.findByName("ROLE_ADMIN");
+//        final Account account = new Account();
+//        account.setFirstName("Test");
+//        account.setLastName("Test");
+//        account.setPassword(passwordEncoder.encode("test"));
+//        account.setEmail("test@test.com");
+//        account.setRoles(Arrays.asList(adminRole));
+//        account.setEnabled(true);
+//        accountRepository.save(account);
 
         alreadySetup = true;
     }
