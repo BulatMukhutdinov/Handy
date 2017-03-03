@@ -1,23 +1,49 @@
-<html xmlns:th="http://www.w3.org/1999/xhtml">
-
+<html xmlns:th="http://www.w3.org/1999/xhtml" class="page">
 <head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
-<title th:text="#{label.pages.home.title}">home</title>
+    <title th:text="#{label.pages.home.title}">home</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="/resources/css/project.css"/>
 </head>
-<body>
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#" th:text="#{label.pages.home.title}">home</a>
+
+<body class="page__body">
+    <header class="header">
+        <div class="wrapper">
+            <a class="logo" href="/"></a>
+            <h1 class="company">Handy</h1>
+
+            <nav class="header__nav">
+                <a class="link" href="#" th:text="#{nav.about}"></a>
+                <a class="link" th:href="@{/registration}" th:text="#{nav.registration}"></a>
+                <a class="link" th:href="@{/logout}" th:text="#{label.pages.logout}"></a>
+            </nav>
+
+            <form class="form form_type_search search">
+                <span class="input-control">
+                    <label class="search__toggler" for="search"><i class="material-icons">search</i></label>
+                    <input id="search" class="input search__input" placeholder="Чем могу помочь?"/>
+                </span>
+            </form>
+        </div>
+    </header>
+
+    <div class="menu">
+        <ul class="menu__list">
+            <li class="menu__item"><a class="link" href="#">Сантехника</a></li>
+            <li class="menu__item"><a class="link" href="#">Электроника</a></li>
+            <li class="menu__item"><a class="link" href="#">Уборка</a></li>
+            <li class="menu__item"><a class="link" href="#">Косметология</a></li>
+            <li class="menu__item"><a class="link" href="#">Еще</a></li>
+        </ul>
     </div>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a th:href="@{/logout}" th:text="#{label.pages.logout}">logout</a></li>
-      </ul>
-  </div>
-</nav>
-    <div class="container">
-            <h1 th:text="#{label.pages.home.message}">home</h1>
-    </div>
+
+    <div class="content"></div>
+
+    <footer class="footer">
+        <div class="copyright wrapper"><a class="link" href="#">Handy team</a>, 2017</div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="/resources/js/project.js"></script>
 </body>
 
 </html>
