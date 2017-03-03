@@ -311,6 +311,7 @@ input:-ms-input-placeholder
 .copyright
 {
     padding: 5px 0 0;
+    text-transform: uppercase;
 }
 /* END Footer */
 
