@@ -20,6 +20,6 @@ public class MyLogoutSuccessHandler implements LogoutSuccessHandler {
             session.removeAttribute("user");
         }
 
-        response.sendRedirect("/logout.html?logSucc=true");
+        response.sendRedirect("/login");
     }
 }

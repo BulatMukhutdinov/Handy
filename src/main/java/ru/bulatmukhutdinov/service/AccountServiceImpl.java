@@ -8,6 +8,7 @@ import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.bulatmukhutdinov.dto.AccountDto;
+import ru.bulatmukhutdinov.persistance.model.Role;
 import ru.bulatmukhutdinov.web.error.AccountAlreadyExistException;
 import ru.bulatmukhutdinov.persistance.dao.AccountRepository;
 import ru.bulatmukhutdinov.persistance.dao.PasswordResetTokenRepository;
@@ -66,7 +67,9 @@ public class AccountServiceImpl implements AccountService {
         account.setPassword(passwordEncoder.encode(accountDto.getPassword()));
         account.setEmail(accountDto.getEmail());
         account.setUsing2FA(accountDto.isUsing2FA());
-        account.setRoles(Arrays.asList(roleRepository.findByName("ROLE_USER")));
+        Set<Role> roles = new HashSet<>();
+        roles.add(roleRepository.findByName("ROLE_USER"));
+        account.setRoles(roles);
         return repository.save(account);
     }
 

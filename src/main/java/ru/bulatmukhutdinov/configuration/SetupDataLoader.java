@@ -13,9 +13,7 @@ import ru.bulatmukhutdinov.persistance.model.Account;
 import ru.bulatmukhutdinov.persistance.model.Privilege;
 import ru.bulatmukhutdinov.persistance.model.Role;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 @Component
 public class SetupDataLoader implements ApplicationListener<ContextRefreshedEvent> {
@@ -49,14 +47,20 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         final Privilege passwordPrivilege = createPrivilegeIfNotFound("CHANGE_PASSWORD_PRIVILEGE");
 
         // == create initial roles
-        final List<Privilege> adminPrivileges = Arrays.asList(readPrivilege, writePrivilege, passwordPrivilege);
+        final Set<Privilege> adminPrivileges = new HashSet<>();
+        adminPrivileges.add(readPrivilege);
+        adminPrivileges.add(writePrivilege);
+        adminPrivileges.add(passwordPrivilege);
+        final Set<Privilege> userPrivileges = new HashSet<>();
+        userPrivileges.add(readPrivilege);
+        userPrivileges.add(passwordPrivilege);
         createRoleIfNotFound("ROLE_ADMIN", adminPrivileges);
-        createRoleIfNotFound("ROLE_USER", Arrays.asList(readPrivilege, passwordPrivilege));
+        createRoleIfNotFound("ROLE_USER", userPrivileges);
 
 //        final Role adminRole = roleRepository.findByName("ROLE_ADMIN");
 //        final Account account = new Account();
-//        account.setFirstName("Test");
-//        account.setLastName("Test");
+//        account.setName("Test");
+//        account.setDescription("Test");
 //        account.setPassword(passwordEncoder.encode("test"));
 //        account.setEmail("test@test.com");
 //        account.setRoles(Arrays.asList(adminRole));
@@ -77,7 +81,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
     }
 
     @Transactional
-    private final Role createRoleIfNotFound(final String name, final Collection<Privilege> privileges) {
+    private final Role createRoleIfNotFound(final String name, final Set<Privilege> privileges) {
         Role role = roleRepository.findByName(name);
         if (role == null) {
             role = new Role(name);

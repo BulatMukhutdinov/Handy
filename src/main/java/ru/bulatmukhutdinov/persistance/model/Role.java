@@ -2,6 +2,7 @@ package ru.bulatmukhutdinov.persistance.model;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Set;
 
 @Entity
 @Table(name = "role")
@@ -11,11 +12,11 @@ public class Role {
     private Long id;
 
     @ManyToMany(mappedBy = "roles")
-    private Collection<Account> accounts;
+    private Set<Account> accounts;
 
     @ManyToMany
     @JoinTable(name = "roles_privileges", joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "privilege_id", referencedColumnName = "id"))
-    private Collection<Privilege> privileges;
+    private Set<Privilege> privileges;
 
     private String name;
 
@@ -46,19 +47,19 @@ public class Role {
         this.name = name;
     }
 
-    public Collection<Account> getAccounts() {
+    public Set<Account> getAccounts() {
         return accounts;
     }
 
-    public void setAccounts(final Collection<Account> accounts) {
+    public void setAccounts(final Set<Account> accounts) {
         this.accounts = accounts;
     }
 
-    public Collection<Privilege> getPrivileges() {
+    public Set<Privilege> getPrivileges() {
         return privileges;
     }
 
-    public void setPrivileges(final Collection<Privilege> privileges) {
+    public void setPrivileges(final Set<Privilege> privileges) {
         this.privileges = privileges;
     }
 

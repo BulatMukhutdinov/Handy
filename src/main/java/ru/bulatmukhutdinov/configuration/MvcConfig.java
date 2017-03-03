@@ -32,23 +32,22 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         super.addViewControllers(registry);
         registry.addViewController("/").setViewName("forward:/login");
         registry.addViewController("/login");
-        registry.addViewController("/registration.html");
-        registry.addViewController("/registrationCaptcha.html");
-        registry.addViewController("/logout.html");
-//        registry.addViewController("/homepage.html");
-        registry.addViewController("/expiredAccount.html");
-        registry.addViewController("/badUser.html");
-        registry.addViewController("/emailError.html");
-        registry.addViewController("/home.html");
-        registry.addViewController("/invalidSession.html");
-        registry.addViewController("/console.html");
-        registry.addViewController("/admin.html");
-        registry.addViewController("/successRegister.html");
-        registry.addViewController("/forgetPassword.html");
-        registry.addViewController("/updatePassword.html");
-        registry.addViewController("/changePassword.html");
-        registry.addViewController("/accounts.html");
-        registry.addViewController("/qrcode.html");
+        registry.addViewController("/registration");
+        registry.addViewController("/registrationCaptcha");
+        registry.addViewController("/logout");
+        registry.addViewController("/expiredAccount");
+        registry.addViewController("/badUser");
+        registry.addViewController("/emailError");
+        registry.addViewController("/home");
+        registry.addViewController("/invalidSession");
+        registry.addViewController("/console");
+        registry.addViewController("/admin");
+        registry.addViewController("/successRegister");
+        registry.addViewController("/forgetPassword");
+        registry.addViewController("/updatePassword");
+        registry.addViewController("/changePassword");
+        registry.addViewController("/accounts");
+        registry.addViewController("/qrcode");
     }
 
     @Override

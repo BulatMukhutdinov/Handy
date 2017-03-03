@@ -63,7 +63,7 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/login*", "/login*", "/logout*", "/signin/**", "/signup/**",
+                .antMatchers("/home*", "/login*", "/logout*", "/signin/**", "/signup/**",
                         "/user/registration*", "/registrationConfirm*", "/expiredAccount*", "/registration*",
                         "/badUser*", "/user/resendRegistrationToken*", "/forgetPassword*", "/user/resetPassword*",
                         "/user/changePassword*", "/emailError*", "/resources/**", "/old/user/registration*", "/successRegister*", "/qrcode*").permitAll()
@@ -73,7 +73,7 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/homepage1")
+                .defaultSuccessUrl("/home")
                 .failureUrl("/login?error=true")
                 .successHandler(myAuthenticationSuccessHandler)
                 .failureHandler(authenticationFailureHandler)
@@ -81,14 +81,14 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .sessionManagement()
-                .invalidSessionUrl("/invalidSession.html")
+                .invalidSessionUrl("/invalidSession")
                 .maximumSessions(1).sessionRegistry(sessionRegistry()).and()
                 .sessionFixation().none()
                 .and()
                 .logout()
                 .logoutSuccessHandler(myLogoutSuccessHandler)
                 .invalidateHttpSession(false)
-                .logoutSuccessUrl("/logout.html?logSucc=true")
+                .logoutSuccessUrl("/logout?logSucc=true")
                 .deleteCookies("JSESSIONID")
                 .permitAll();
         // @formatter:on
