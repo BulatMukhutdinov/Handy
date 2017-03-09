@@ -7,5 +7,11 @@
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://212.24.107.183:5432/SpringSecurityEdu</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="SpringSecurityEdu@localhost" uuid="d0511b18-43b1-48b2-9103-b2397902da05">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/SpringSecurityEdu</jdbc-url>
+    </data-source>
   </component>
 </project>
