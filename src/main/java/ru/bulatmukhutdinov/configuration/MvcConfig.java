@@ -70,16 +70,19 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     // beans
 
     @Bean
-    public LocaleResolver localeResolver() {
-        final CookieLocaleResolver cookieLocaleResolver = new CookieLocaleResolver();
-//        cookieLocaleResolver.setDefaultLocale(Locale.ENGLISH);
-        return cookieLocaleResolver;
+    public LocaleResolver localeResolver(){
+        CookieLocaleResolver resolver = new CookieLocaleResolver();
+        resolver.setDefaultLocale(Locale.ENGLISH);
+        resolver.setCookieName("myLocaleCookie");
+        resolver.setCookieMaxAge(4800);
+        return resolver;
     }
+
 
 //    @Bean
 //    public MessageSource messageSource() {
 //        final ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-//        messageSource.setBasename("i18n/messages");
+//        messageSource.setBasename("messages");
 //        messageSource.setUseCodeAsDefaultMessage(true);
 //        messageSource.setDefaultEncoding("UTF-8");
 //        messageSource.setCacheSeconds(0);

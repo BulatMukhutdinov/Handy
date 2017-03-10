@@ -21,8 +21,8 @@
 var serverContext = [[@{/}]];
 
 function resendToken(){
-	var token = [[${param.token}]];
-    $.get(serverContext + "user/resendRegistrationToken?token="+token, function(data){
+	var text = [[${param.text}]];
+    $.get(serverContext + "user/resendRegistrationToken?text="+text, function(data){
         window.location.href = serverContext +"login?message=" + data.message;
     })
     .fail(function(data) {

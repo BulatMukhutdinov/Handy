@@ -6,6 +6,7 @@ D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\web\controller\HomeContr
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\validation\PasswordMatchesValidator.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\validator\AccountValidator.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\persistance\model\Role.java
+D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\persistance\model\CategoryText.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\configuration\SpringTaskConfig.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\persistance\dao\VerificationTokenRepository.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\web\error\RestResponseEntityExceptionHandler.java
@@ -43,6 +44,7 @@ D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\dto\AccountDto.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\security\LoggedAccount.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\configuration\SetupDataLoader.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\security\SecurityAccountService.java
+D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\persistance\model\Lang.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\security\google2fa\CustomWebAuthenticationDetails.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\service\AccountService.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\validation\PasswordConstraintValidator.java

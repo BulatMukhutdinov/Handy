@@ -18,7 +18,7 @@ import java.util.Locale;
 public class HomeController {
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public String getHome(final Model model) {
+    public String getHome(Locale locale, final Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth.getPrincipal() instanceof Account) {
             Account account = (Account) auth.getPrincipal();

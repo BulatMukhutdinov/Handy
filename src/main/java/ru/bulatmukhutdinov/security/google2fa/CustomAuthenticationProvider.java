@@ -23,14 +23,7 @@ public class CustomAuthenticationProvider extends DaoAuthenticationProvider {
         if ((account == null)) {
             throw new BadCredentialsException("Invalid username or password");
         }
-        // to verify verification code
-        if (account.isUsing2FA()) {
-            final Totp totp = new Totp(account.getSecret());
-            if (!isValidLong(verificationCode) || !totp.verify(verificationCode)) {
-                throw new BadCredentialsException("Invalid verfication code");
-            }
 
-        }
         final Authentication result = super.authenticate(auth);
         return new UsernamePasswordAuthenticationToken(account, result.getCredentials(), result.getAuthorities());
     }

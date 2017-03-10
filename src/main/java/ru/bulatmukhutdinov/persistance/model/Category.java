@@ -12,12 +12,12 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String name;
-
-    private String description;
 
     @ManyToMany(mappedBy = "categories")
     private Set<Account> accounts;
+
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    private Set<CategoryText> categoryTexts;
 
     public Set<Account> getAccounts() {
         return accounts;
@@ -35,20 +35,11 @@ public class Category {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Set<CategoryText> getCategoryTexts() {
+        return categoryTexts;
     }
 
-    public void setName(final String name) {
-        this.name = name;
+    public void setCategoryTexts(Set<CategoryText> categoryTexts) {
+        this.categoryTexts = categoryTexts;
     }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(final String description) {
-        this.description = description;
-    }
-
 }

@@ -9,7 +9,7 @@
     </style>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script th:src="@{/resources/pwstrength.js}"></script>
-    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title th:text="#{label.form.title}">form</title>
 </head>
 <body>
@@ -22,7 +22,7 @@
         <br/>
         <form action="/" method="POST" enctype="utf8">
             <div class="form-group row" >
-                <label class="col-sm-3" th:text="#{label.user.firstName}">first</label>
+                <label class="col-sm-3" th:text="#{label.user.firstName}">firstName</label>
                 <span class="col-sm-5"><input class="form-control" name="firstName" value="" required="required"/></span>
                 <span id="firstNameError" class="alert alert-danger col-sm-4" style="display:none"></span>
 

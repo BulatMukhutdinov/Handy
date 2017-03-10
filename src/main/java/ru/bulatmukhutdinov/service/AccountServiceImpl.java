@@ -66,7 +66,6 @@ public class AccountServiceImpl implements AccountService {
         account.setLastName(accountDto.getLastName());
         account.setPassword(passwordEncoder.encode(accountDto.getPassword()));
         account.setEmail(accountDto.getEmail());
-        account.setUsing2FA(accountDto.isUsing2FA());
         Set<Role> roles = new HashSet<>();
         roles.add(roleRepository.findByName("ROLE_USER"));
         account.setRoles(roles);
@@ -182,14 +181,14 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public String generateQRUrl(Account Account) throws UnsupportedEncodingException {
-        return QR_PREFIX + URLEncoder.encode(String.format("otpauth://totp/%s:%s?secret=%s&issuer=%s", APP_NAME, Account.getEmail(), Account.getSecret(), APP_NAME), "UTF-8");
+        return QR_PREFIX + URLEncoder.encode(String.format("otpauth://totp/%s:%s?secret=%s&issuer=%s", APP_NAME, Account.getEmail(),  APP_NAME), "UTF-8");
     }
 
     @Override
     public Account updateAccount2FA(boolean use2FA) {
         final Authentication curAuth = SecurityContextHolder.getContext().getAuthentication();
         Account principal = (Account) curAuth.getPrincipal();
-        principal.setUsing2FA(use2FA);
+//        principal.setUsing2FA(use2FA);
         principal = repository.save(principal);
         final Authentication auth = new UsernamePasswordAuthenticationToken(principal, principal.getPassword(), curAuth.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(auth);

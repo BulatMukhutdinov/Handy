@@ -9,8 +9,8 @@
 
 <h1 class="alert alert-info" th:text="#{message.regSucc}">success</h1>
 <br/>
-<span th:if="${param.token != null}" th:text="#{token.message}">token</span>
-<span th:text="${param.token}">token</span>
+<span th:if="${param.text != null}" th:text="#{text.message}">text</span>
+<span th:text="${param.text}">text</span>
 <br/>
 <a class="btn btn-primary" th:href="@{/login}" th:text="#{label.login}">login</a>
 </div>          

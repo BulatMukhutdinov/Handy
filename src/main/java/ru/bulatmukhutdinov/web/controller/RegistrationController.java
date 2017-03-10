@@ -76,10 +76,10 @@ public class RegistrationController {
         if (result.equals("valid")) {
             final Account account = accountService.getAccount(token);
             System.out.println(account);
-            if (account.isUsing2FA()) {
-                model.addAttribute("qr", accountService.generateQRUrl(account));
-                return "redirect:/qrcode.html?lang=" + locale.getLanguage();
-            }
+//            if (account.isUsing2FA()) {
+//                model.addAttribute("qr", accountService.generateQRUrl(account));
+//                return "redirect:/qrcode.html?lang=" + locale.getLanguage();
+//            }
             model.addAttribute("message", messages.getMessage("message.accountVerified", null, locale));
             return "redirect:/login?lang=" + locale.getLanguage();
         }

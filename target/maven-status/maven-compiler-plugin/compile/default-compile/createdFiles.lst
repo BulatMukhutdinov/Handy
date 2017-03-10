@@ -2,9 +2,11 @@ ru\bulatmukhutdinov\persistance\model\Privilege.class
 ru\bulatmukhutdinov\service\AccountService.class
 ru\bulatmukhutdinov\dto\PasswordDto.class
 ru\bulatmukhutdinov\validator\AccountValidator.class
+ru\bulatmukhutdinov\persistance\model\Lang.class
 ru\bulatmukhutdinov\security\MyLogoutSuccessHandler.class
 ru\bulatmukhutdinov\task\TokensPurgeTask.class
 ru\bulatmukhutdinov\persistance\model\Account.class
+ru\bulatmukhutdinov\persistance\model\CategoryText.class
 ru\bulatmukhutdinov\security\LoggedAccount.class
 ru\bulatmukhutdinov\persistance\model\PasswordResetToken.class
 ru\bulatmukhutdinov\security\LoginAttemptService$1.class

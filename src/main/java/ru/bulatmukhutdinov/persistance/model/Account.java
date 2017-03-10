@@ -26,10 +26,6 @@ public class Account {
 
     private boolean enabled;
 
-    private boolean isUsing2FA;
-
-    private String secret;
-
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "account_role", joinColumns = @JoinColumn(name = "account_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
@@ -41,7 +37,6 @@ public class Account {
 
     public Account() {
         super();
-        this.secret = Base32.random();
         this.enabled = false;
     }
 
@@ -109,22 +104,6 @@ public class Account {
         this.enabled = enabled;
     }
 
-    public boolean isUsing2FA() {
-        return isUsing2FA;
-    }
-
-    public void setUsing2FA(boolean isUsing2FA) {
-        this.isUsing2FA = isUsing2FA;
-    }
-
-    public String getSecret() {
-        return secret;
-    }
-
-    public void setSecret(String secret) {
-        this.secret = secret;
-    }
-
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -151,11 +130,5 @@ public class Account {
         return true;
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append("User [id=").append(id).append(", firstName=").append(firstName).append(", lastName=").append(lastName).append(", email=").append(email).append(", password=").append(password).append(", enabled=").append(enabled).append(", isUsing2FA=")
-                .append(isUsing2FA).append(", secret=").append(secret).append(", roles=").append(roles).append("]");
-        return builder.toString();
-    }
+
 }
