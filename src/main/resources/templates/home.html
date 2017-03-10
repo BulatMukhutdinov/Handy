@@ -32,40 +32,15 @@
 
 <div class="menu">
     <ul class="menu__list">
-        <li class="menu__item menu__item_state_active"><a class="link" href="#1">Сантехника</a></li>
-        <li class="menu__item"><a class="link" href="#2">Электроника</a></li>
-        <li class="menu__item"><a class="link" href="#3">Уборка</a></li>
-        <li class="menu__item"><a class="link" href="#4">Косметология</a></li>
-        <li class="menu__item"><a class="link" href="#5">Разное</a></li>
+        <li class="menu__item" th:each="category : ${categories}">
+            <a class="link" th:text="${category.text}" th:id="${category.id}" href="#">
+            </a>
+        </li>
     </ul>
 </div>
-<!--<div>-->
-    <!--Категории-->
-    <!--<tr th:each="category : ${categories}">-->
-        <!--<td th:text="${category.id}"></td>-->
-        <!--<td th:text="${category.name}"></td>-->
-        <!--<td th:text="${category.description}"></td>-->
-    <!--</tr>-->
-<!--</div>-->
 <div class="content wrapper">
-    <section class="section">
-        <h2 class="title" id="1">Сантехника</h2>
-    </section>
-
-    <section class="section">
-        <h2 class="title" id="2">Электроника</h2>
-    </section>
-
-    <section class="section">
-        <h2 class="title" id="3">Уборка</h2>
-    </section>
-
-    <section class="section">
-        <h2 class="title" id="4">Косметология</h2>
-    </section>
-
-    <section class="section">
-        <h2 class="title" id="5">Разное</h2>
+    <section class="section" th:each="category : ${categories}">
+        <h2 class="title" th:text="${category.text}" th:id="${category.id}"></h2>
     </section>
 </div>
 
