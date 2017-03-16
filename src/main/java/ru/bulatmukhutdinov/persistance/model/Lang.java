@@ -12,7 +12,7 @@ public class Lang {
 
     private String name;
 
-    @OneToMany(mappedBy = "lang", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "lang", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<CategoryText> categoryTexts;
 
 

@@ -58,7 +58,6 @@ public class HomeController {
             accountDtoHashMap.put(new CategoryDto(categoryTextService.findByLang(category, language).getText()), accountDtos);
         }
         model.addAttribute("categoryAccounts", accountDtoHashMap);
-        System.out.println("!");
         return "home";
     }
 }

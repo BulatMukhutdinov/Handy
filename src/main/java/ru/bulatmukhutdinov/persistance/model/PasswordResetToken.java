@@ -15,7 +15,7 @@ public class PasswordResetToken {
 
     private String token;
 
-    @OneToOne(targetEntity = Account.class, fetch = FetchType.EAGER)
+    @OneToOne(targetEntity = Account.class, fetch = FetchType.LAZY)
     @JoinColumn(nullable = false, name = "user_id")
     private Account account;
 

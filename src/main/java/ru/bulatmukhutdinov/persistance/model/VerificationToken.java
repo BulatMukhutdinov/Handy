@@ -15,7 +15,7 @@ public class VerificationToken {
 
     private String token;
 
-    @OneToOne(targetEntity = Account.class, fetch = FetchType.EAGER)
+    @OneToOne(targetEntity = Account.class, fetch = FetchType.LAZY)
     @JoinColumn(nullable = false, name = "user_id", foreignKey = @ForeignKey(name = "FK_VERIFY_USER"))
     private Account account;
 

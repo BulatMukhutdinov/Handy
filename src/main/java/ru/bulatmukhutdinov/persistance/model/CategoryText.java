@@ -14,11 +14,11 @@ public class CategoryText {
 
     private String text;
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "lang_id")
     private Lang lang;
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
 
