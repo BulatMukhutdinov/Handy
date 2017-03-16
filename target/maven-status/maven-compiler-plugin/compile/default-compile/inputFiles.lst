@@ -8,14 +8,17 @@ D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\validator\AccountValidat
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\persistance\model\Role.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\persistance\model\CategoryText.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\configuration\SpringTaskConfig.java
+D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\persistance\dao\CategoryTextRepository.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\persistance\dao\VerificationTokenRepository.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\web\error\RestResponseEntityExceptionHandler.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\service\SecurityServiceImpl.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\service\AccountServiceImpl.java
+D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\service\LangServiceImpl.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\validation\ValidEmail.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\configuration\MvcConfig.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\web\controller\RegistrationController.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\security\MySimpleUrlAuthenticationSuccessHandler.java
+D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\service\CategoryServiceImpl.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\web\util\GenericResponse.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\security\AuthenticationFailureListener.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\web\controller\OldRegistrationController.java
@@ -35,6 +38,7 @@ D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\persistance\model\Verifi
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\Application.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\security\google2fa\CustomAuthenticationProvider.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\security\google2fa\CustomWebAuthenticationDetailsSource.java
+D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\service\CategoryTextServiceImpl.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\web\error\AccountNotFoundException.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\registration\OnRegistrationCompleteEvent.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\dto\PasswordDto.java
@@ -49,10 +53,13 @@ D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\security\google2fa\Custo
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\service\AccountService.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\validation\PasswordConstraintValidator.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\security\ActiveAccountStore.java
+D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\service\CategoryTextService.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\validation\PasswordMatches.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\persistance\dao\RoleRepository.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\security\LoginAttemptService.java
+D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\service\CategoryService.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\web\error\AccountAlreadyExistException.java
+D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\persistance\dao\LangRepository.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\persistance\model\Category.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\configuration\AppConfig.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\security\MyLogoutSuccessHandler.java
@@ -60,4 +67,5 @@ D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\validation\EmailValidato
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\security\AuthenticationSuccessEventListener.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\security\CustomAuthenticationFailureHandler.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\persistance\dao\PasswordResetTokenRepository.java
+D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\service\LangService.java
 D:\IdeaProjects\Handy\src\main\java\ru\bulatmukhutdinov\persistance\model\Account.java

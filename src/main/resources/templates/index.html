@@ -1,0 +1,83 @@
+<html class="page" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Handy</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="/resources/css/project.css"/>
+</head>
+
+<body class="page__body">
+<header class="header">
+    <div class="wrapper">
+        <a class="logo" href="/"></a>
+        <h1 class="company">Handy</h1>
+
+        <nav class="header__nav">
+            <a class="link" href="#about">О нас</a>
+            <span>
+                    <a class="link" href="#">Войти</a>
+                </span>
+            <span>
+                    <a class="link" href="#">Регистрация</a>
+                </span>
+        </nav>
+
+        <form class="form form_type_search search">
+                <span class="input-control">
+                    <label class="search__toggler" for="search"><i class="material-icons">search</i></label>
+                    <input id="search" class="input search__input" placeholder="Чем могу помочь?"/>
+                </span>
+        </form>
+    </div>
+</header>
+
+<!--<div class="menu">-->
+<!--<ul class="menu__list">-->
+<!--<li class="menu__item menu__item_state_active"><a class="link" href="#1">Сантехника</a></li>-->
+<!--<li class="menu__item"><a class="link" href="#2">Электроника</a></li>-->
+<!--<li class="menu__item"><a class="link" href="#3">Уборка</a></li>-->
+<!--<li class="menu__item"><a class="link" href="#4">Косметология</a></li>-->
+<!--<li class="menu__item"><a class="link" href="#5">Разное</a></li>-->
+<!--</ul>-->
+<!--</div>-->
+<div class="menu">
+    <ul class="menu__list">
+        <li class="menu__item" th:each="account : ${accounts}">
+            <a class="link" th:text="${account.value.categoryText}" href="#">
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div class="content wrapper">
+    <section class="section section_size_1" th:each="category: ${categoryAccounts}">
+        <h2 class="title" th:text="${category.key.name}"></h2>
+
+        <div class="slider">
+
+            <div class="slider__item" th:each="account: ${category.value}">
+                <section class="card card_style_1">
+                    <h3 class="card__title" th:text="${account.firstName} + ' ' + ${account.lastName}"></h3>
+                    <div class="card__description" th:text="${account.description}"></div>
+                    <footer class="card__footer">
+                        <span class="price" th:text="${account.price}"></span>
+                        <button class="btn" type="button" th:text="#{label.order}"></button>
+                    </footer>
+                </section>
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+<footer class="footer">
+    <div class="copyright wrapper"><a class="link" href="#">Handy team</a>, 2017</div>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="/resources/plugins/slick/slick.min.js"></script>
+<script src="/resources/js/project.js"></script>
+</body>
+
+</html>
+

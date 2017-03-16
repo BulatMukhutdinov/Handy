@@ -19,6 +19,10 @@ public class Account {
 
     private String lastName;
 
+    private String description;
+
+    private Integer price;
+
     private String email;
 
     @Column(length = 60)
@@ -38,6 +42,8 @@ public class Account {
     public Account() {
         super();
         this.enabled = false;
+        this.description = "";
+        this.price = 0;
     }
 
     public Long getId() {
@@ -54,6 +60,22 @@ public class Account {
 
     public void setFirstName(final String firstName) {
         this.firstName = firstName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 
     public String getLastName() {
