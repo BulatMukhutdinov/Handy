@@ -1,4 +1,4 @@
-<html class="page" xmlns:th="http://www.w3.org/1999/xhtml">
+<html class="page" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <title>Handy</title>
     <meta charset="UTF-8"/>
@@ -12,13 +12,16 @@
         <h1 class="company">Handy</h1>
 
         <nav class="header__nav">
-            <a class="link" href="#about">О нас</a>
-            <span>
-                    <a class="link" href="#">Войти</a>
-                </span>
-            <span>
-                    <a class="link" href="#">Регистрация</a>
-                </span>
+            <a class="link" th:text="#{nav.about}" th:href="@{/admin}"></a>
+            <span sec:authorize="isAuthenticated()">
+                    <a class="link" th:text="#{label.pages.logout}" th:href="@{/logout}"></a>
+            </span>
+            <span sec:authorize="isAnonymous()">
+                    <a class="link" th:text="#{label.login}" th:href="@{/login}"></a>
+            </span>
+            <span sec:authorize="isAnonymous()">
+                    <a class="link" th:text="#{label.form.loginSignUp}" th:href="@{/registration}"></a>
+            </span>
         </nav>
 
         <form class="form form_type_search search">
