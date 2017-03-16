@@ -1,6 +1,6 @@
-<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml" class="page">
+<html class="page" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title th:text="#{label.pages.home.title}">home</title>
+    <title>Handy</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="/resources/css/project.css"/>
 </head>
@@ -12,36 +12,57 @@
         <h1 class="company">Handy</h1>
 
         <nav class="header__nav">
-            <a class="link" href="#" th:text="#{nav.about}"></a>
-            <span sec:authorize="isAnonymous()">
-                <a class="link" th:href="@{/login}" th:text="#{nav.login}"></a>
-            </span>
-            <span sec:authorize="isAuthenticated()">
-                <a class="link" th:href="@{/logout}" th:text="#{label.pages.logout}"></a>
-            </span>
+            <a class="link" href="#about">О нас</a>
+            <span>
+                    <a class="link" href="#">Войти</a>
+                </span>
+            <span>
+                    <a class="link" href="#">Регистрация</a>
+                </span>
         </nav>
 
         <form class="form form_type_search search">
-            <span class="input-control">
-                <label class="search__toggler" for="search"><i class="material-icons">search</i></label>
-                <input id="search" class="input search__input" placeholder="Чем могу помочь?"/>
-            </span>
+                <span class="input-control">
+                    <label class="search__toggler" for="search"><i class="material-icons">search</i></label>
+                    <input id="search" class="input search__input" placeholder="Чем могу помочь?"/>
+                </span>
         </form>
     </div>
 </header>
 
+
 <div class="menu">
     <ul class="menu__list">
-        <li class="menu__item" th:each="category : ${categories}">
-            <a class="link" th:text="${category.text}" th:id="${category.id}" href="#">
+        <li class="menu__item" th:each="category : ${categoryAccounts}">
+            <a class="link" th:text="${category.key.name}" href="#">
             </a>
         </li>
     </ul>
 </div>
+
 <div class="content wrapper">
-    <section class="section" th:each="category : ${categories}">
-        <h2 class="title" th:text="${category.text}" th:id="${category.id}"></h2>
+    <section class="section section_size_1" th:each="category: ${categoryAccounts}">
+        <h2 class="title" th:text="${category.key.name}"></h2>
+
+        <div class="slider">
+
+            <div class="slider__item" th:each="account: ${category.value}">
+                <section class="card card_style_1">
+                    <h3 class="card__title">
+                        <p th:if="${account.firstName != null}" th:text="${account.firstName}"></p>
+                        <p th:if="${account.lastName != null}" th:text="${account.lastName}"></p>
+                    </h3>
+                    <div class="card__description" th:text="${account.description}"></div>
+                    <footer class="card__footer">
+                        <span class="price" th:if="${account.price != null}" th:text="${account.price}"></span>
+                        <button class="btn" type="button" th:text="#{label.order}"></button>
+                    </footer>
+                </section>
+            </div>
+
+        </div>
     </section>
+
 </div>
 
 <footer class="footer">
@@ -49,6 +70,7 @@
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="/resources/plugins/slick/slick.min.js"></script>
 <script src="/resources/js/project.js"></script>
 </body>
 

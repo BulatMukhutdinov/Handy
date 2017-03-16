@@ -51,15 +51,14 @@ public class HomeController {
             accounts = category.getAccounts();
             accountDtos = new ArrayList<>();
             for (Account account : accounts) {
-                if (account.getCategories().contains(category)) {
-                    accountDto = new AccountDto(account.getFirstName(), account.getLastName(), account.getEmail(),
-                            account.getDescription(), account.getPrice());
-                    accountDtos.add(accountDto);
-                }
-                accountDtoHashMap.put(new CategoryDto(categoryTextService.findByLang(category, language).getText()), accountDtos);
+                accountDto = new AccountDto(account.getFirstName(), account.getLastName(), account.getEmail(),
+                        account.getDescription(), account.getPrice());
+                accountDtos.add(accountDto);
             }
+            accountDtoHashMap.put(new CategoryDto(categoryTextService.findByLang(category, language).getText()), accountDtos);
         }
         model.addAttribute("categoryAccounts", accountDtoHashMap);
-        return "index";
+        System.out.println("!");
+        return "home";
     }
 }

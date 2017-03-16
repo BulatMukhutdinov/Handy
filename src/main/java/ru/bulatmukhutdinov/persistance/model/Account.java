@@ -147,7 +147,7 @@ public class Account {
             return false;
         }
         final Account account = (Account) obj;
-        if (!Objects.equals(email, account.email)) {
+        if (!Objects.equals(email,account.email)) {
             return false;
         }
         return true;
