@@ -41,8 +41,8 @@
 <!--</div>-->
 <div class="menu">
     <ul class="menu__list">
-        <li class="menu__item" th:each="account : ${accounts}">
-            <a class="link" th:text="${account.value.categoryText}" href="#">
+        <li class="menu__item" th:each="category : ${categoryAccounts}">
+            <a class="link" th:text="${category.key.name}" href="#">
             </a>
         </li>
     </ul>
