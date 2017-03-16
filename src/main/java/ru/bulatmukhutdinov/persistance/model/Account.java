@@ -3,6 +3,7 @@ package ru.bulatmukhutdinov.persistance.model;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import org.jboss.aerogear.security.otp.api.Base32;
@@ -146,7 +147,7 @@ public class Account {
             return false;
         }
         final Account account = (Account) obj;
-        if (!email.equals(account.email)) {
+        if (!Objects.equals(email, account.email)) {
             return false;
         }
         return true;
