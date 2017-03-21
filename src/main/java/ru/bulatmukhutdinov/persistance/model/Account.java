@@ -31,14 +31,13 @@ public class Account {
 
     private boolean enabled;
 
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Service> services;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "account_role", joinColumns = @JoinColumn(name = "account_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private Set<Role> roles;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "account_category", joinColumns = @JoinColumn(name = "account_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "category_id", referencedColumnName = "id"))
-    private Set<Category> categories;
 
     public Account() {
         super();
@@ -111,13 +110,6 @@ public class Account {
         this.roles = roles;
     }
 
-    public Set<Category> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(Set<Category> categories) {
-        this.categories = categories;
-    }
 
     public boolean isEnabled() {
         return enabled;
@@ -127,31 +119,45 @@ public class Account {
         this.enabled = enabled;
     }
 
+    public Set<Service> getServices() {
+        return services;
+    }
+
+    public void setServices(Set<Service> services) {
+        this.services = services;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Account account = (Account) o;
+
+        if (enabled != account.enabled) return false;
+        if (id != null ? !id.equals(account.id) : account.id != null) return false;
+        if (firstName != null ? !firstName.equals(account.firstName) : account.firstName != null) return false;
+        if (lastName != null ? !lastName.equals(account.lastName) : account.lastName != null) return false;
+        if (description != null ? !description.equals(account.description) : account.description != null) return false;
+        if (price != null ? !price.equals(account.price) : account.price != null) return false;
+        if (email != null ? !email.equals(account.email) : account.email != null) return false;
+        if (password != null ? !password.equals(account.password) : account.password != null) return false;
+        if (services != null ? !services.equals(account.services) : account.services != null) return false;
+        return roles != null ? roles.equals(account.roles) : account.roles == null;
+    }
+
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = (prime * result) + ((email == null) ? 0 : email.hashCode());
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (price != null ? price.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (enabled ? 1 : 0);
+        result = 31 * result + (services != null ? services.hashCode() : 0);
+        result = 31 * result + (roles != null ? roles.hashCode() : 0);
         return result;
     }
-
-    @Override
-    public boolean equals(final Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Account account = (Account) obj;
-        if (!Objects.equals(email,account.email)) {
-            return false;
-        }
-        return true;
-    }
-
-
 }

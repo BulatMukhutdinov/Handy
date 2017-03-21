@@ -36,7 +36,7 @@
 
 <div class="menu">
     <ul class="menu__list">
-        <li class="menu__item" th:each="category : ${categoryAccounts}">
+        <li class="menu__item" th:each="category : ${categoryServices}">
             <a class="link" th:text="${category.key.name}" href="#">
             </a>
         </li>
@@ -44,20 +44,20 @@
 </div>
 
 <div class="content wrapper">
-    <section class="section section_size_1" th:each="category: ${categoryAccounts}">
+    <section class="section section_size_1" th:each="category: ${categoryServices}">
         <h2 class="title" th:text="${category.key.name}"></h2>
 
         <div class="slider">
 
-            <div class="slider__item" th:each="account: ${category.value}">
+            <div class="slider__item" th:each="service: ${category.value}">
                 <section class="card card_style_1">
                     <h3 class="card__title">
-                        <p th:if="${account.firstName != null}" th:text="${account.firstName}"></p>
-                        <p th:if="${account.lastName != null}" th:text="${account.lastName}"></p>
+                        <p th:if="${service.account.firstName != null}" th:text="${service.account.firstName}"></p>
+                        <p th:if="${service.account.lastName != null}" th:text="${service.account.lastName}"></p>
                     </h3>
-                    <div class="card__description" th:text="${account.description}"></div>
+                    <div class="card__description" th:text="${service.description}"></div>
                     <footer class="card__footer">
-                        <span class="price" th:if="${account.price != null}" th:text="${account.price}"></span>
+                        <span class="price" th:if="${service.account.price != null}" th:text="${service.account.price}"></span>
                         <button class="btn" type="button" th:text="#{label.order}"></button>
                     </footer>
                 </section>

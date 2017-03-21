@@ -13,19 +13,11 @@ public class Category {
     private Long id;
 
 
-    @ManyToMany(mappedBy = "categories", fetch = FetchType.LAZY)
-    private Set<Account> accounts;
-
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<CategoryText> categoryTexts;
 
-    public Set<Account> getAccounts() {
-        return accounts;
-    }
-
-    public void setAccounts(Set<Account> accounts) {
-        this.accounts = accounts;
-    }
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Service> services;
 
     public Long getId() {
         return id;
@@ -41,5 +33,13 @@ public class Category {
 
     public void setCategoryTexts(Set<CategoryText> categoryTexts) {
         this.categoryTexts = categoryTexts;
+    }
+
+    public Set<Service> getServices() {
+        return services;
+    }
+
+    public void setServices(Set<Service> services) {
+        this.services = services;
     }
 }
