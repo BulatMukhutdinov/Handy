@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.core.Ordered;
 import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.*;
@@ -21,33 +22,22 @@ import java.util.Locale;
 @EnableWebMvc
 public class MvcConfig extends WebMvcConfigurerAdapter {
 
-    public MvcConfig() {
-        super();
-    }
-
-    //
-
     @Override
     public void addViewControllers(final ViewControllerRegistry registry) {
         super.addViewControllers(registry);
-        registry.addViewController("/").setViewName("forward:/login");
-        registry.addViewController("/login");
         registry.addViewController("/registration");
         registry.addViewController("/registrationCaptcha");
         registry.addViewController("/logout");
+        registry.addViewController("/login");
         registry.addViewController("/expiredAccount");
         registry.addViewController("/badUser");
         registry.addViewController("/emailError");
         registry.addViewController("/home");
         registry.addViewController("/invalidSession");
-        registry.addViewController("/console");
-        registry.addViewController("/admin");
         registry.addViewController("/successRegister");
         registry.addViewController("/forgetPassword");
         registry.addViewController("/updatePassword");
         registry.addViewController("/changePassword");
-        registry.addViewController("/accounts");
-        registry.addViewController("/qrcode");
     }
 
     @Override
@@ -70,7 +60,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     // beans
 
     @Bean
-    public LocaleResolver localeResolver(){
+    public LocaleResolver localeResolver() {
         CookieLocaleResolver resolver = new CookieLocaleResolver();
         resolver.setDefaultLocale(Locale.ENGLISH);
         resolver.setCookieName("myLocaleCookie");

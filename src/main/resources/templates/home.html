@@ -17,10 +17,10 @@
                     <a class="link" th:text="#{label.pages.logout}" th:href="@{/logout}"></a>
             </span>
             <span sec:authorize="isAnonymous()">
-                    <a class="link" th:text="#{label.login}" th:href="@{/login}"></a>
+                    <a class="link" th:text="#{nav.login}" th:href="@{/login}"></a>
             </span>
             <span sec:authorize="isAnonymous()">
-                    <a class="link" th:text="#{label.form.loginSignUp}" th:href="@{/registration}"></a>
+                    <a class="link" th:text="#{nav.registration}" th:href="@{/registration}"></a>
             </span>
         </nav>
 

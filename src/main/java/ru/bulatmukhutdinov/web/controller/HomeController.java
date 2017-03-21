@@ -32,6 +32,11 @@ public class HomeController {
     @Autowired
     private CategoryService categoryService;
 
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String getDefault(Locale locale, final Model model) {
+        return getHome(locale, model);
+    }
+
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String getHome(Locale locale, final Model model) {
         List<Category> categories = categoryService.findAll();
