@@ -24,6 +24,14 @@ public class Account {
 
     private Integer price;
 
+    private String ownTelegram;
+
+    private String groupTelegram;
+
+    private String website;
+
+    private String userPicUri;
+
     private String email;
 
     @Column(length = 60)
@@ -111,6 +119,38 @@ public class Account {
     }
 
 
+    public String getOwnTelegram() {
+        return ownTelegram;
+    }
+
+    public void setOwnTelegram(String ownTelegram) {
+        this.ownTelegram = ownTelegram;
+    }
+
+    public String getGroupTelegram() {
+        return groupTelegram;
+    }
+
+    public void setGroupTelegram(String groupTelegram) {
+        this.groupTelegram = groupTelegram;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public String getUserPicUri() {
+        return userPicUri;
+    }
+
+    public void setUserPicUri(String userPicUri) {
+        this.userPicUri = userPicUri;
+    }
+
     public boolean isEnabled() {
         return enabled;
     }
@@ -140,6 +180,11 @@ public class Account {
         if (lastName != null ? !lastName.equals(account.lastName) : account.lastName != null) return false;
         if (description != null ? !description.equals(account.description) : account.description != null) return false;
         if (price != null ? !price.equals(account.price) : account.price != null) return false;
+        if (ownTelegram != null ? !ownTelegram.equals(account.ownTelegram) : account.ownTelegram != null) return false;
+        if (groupTelegram != null ? !groupTelegram.equals(account.groupTelegram) : account.groupTelegram != null)
+            return false;
+        if (website != null ? !website.equals(account.website) : account.website != null) return false;
+        if (userPicUri != null ? !userPicUri.equals(account.userPicUri) : account.userPicUri != null) return false;
         if (email != null ? !email.equals(account.email) : account.email != null) return false;
         if (password != null ? !password.equals(account.password) : account.password != null) return false;
         if (services != null ? !services.equals(account.services) : account.services != null) return false;
@@ -153,6 +198,10 @@ public class Account {
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (price != null ? price.hashCode() : 0);
+        result = 31 * result + (ownTelegram != null ? ownTelegram.hashCode() : 0);
+        result = 31 * result + (groupTelegram != null ? groupTelegram.hashCode() : 0);
+        result = 31 * result + (website != null ? website.hashCode() : 0);
+        result = 31 * result + (userPicUri != null ? userPicUri.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (enabled ? 1 : 0);

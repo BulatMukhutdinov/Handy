@@ -365,6 +365,37 @@ input:-ms-input-placeholder
     border-bottom: 1px solid #f0f0f0;
 }
 
+.card__title p
+{
+    float: left;
+    margin-right: 5px;
+}
+
+.card__userpic__plhldr
+{
+    width: 70px;
+    height: 70px;
+    -webkit-border-radius: 99px;
+    -moz-border-radius: 99px;
+    border-radius: 99px;
+    background: url(../i/pic_plhldr.png) no-repeat;
+    background-size: contain;
+    background-clip: content-box;
+    margin: 8px 15px 0 0;
+    float: left;
+}
+
+.card__userpic
+{
+    max-width: 100%;
+    height: 70px;
+    -webkit-border-radius: 99px;
+    -moz-border-radius: 99px;
+    border-radius: 99px;
+    margin: 8px 15px 0 0;
+    float: left;
+}
+
 .card__description
 {
     position: relative;
