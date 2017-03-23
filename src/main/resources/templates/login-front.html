@@ -1,0 +1,81 @@
+<html class="page" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Handy</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="/resources/css/project.css"/>
+</head>
+
+<body class="page__body">
+<header class="header">
+    <div class="wrapper">
+        <a class="logo" href="/"></a>
+        <h1 class="company">Handy</h1>
+
+        <nav class="header__nav">
+            <a class="link" href="#about">О нас</a>
+            <span>
+                    <a class="link" href="#">Войти</a>
+                </span>
+            <span>
+                    <a class="link" href="#">Регистрация</a>
+                </span>
+        </nav>
+
+        <form class="form form_type_search search">
+                <span class="input-control">
+                    <label class="search__toggler" for="search"><i class="material-icons">search</i></label>
+                    <input id="search" class="input search__input" placeholder="Чем могу помочь?"/>
+                </span>
+        </form>
+    </div>
+</header>
+
+<div class="menu">
+    <ul class="menu__list">
+        <li class="menu__item menu__item_state_active"><a class="link" href="#1">Сантехника</a></li>
+        <li class="menu__item"><a class="link" href="#2">Электроника</a></li>
+        <li class="menu__item"><a class="link" href="#3">Уборка</a></li>
+        <li class="menu__item"><a class="link" href="#4">Косметология</a></li>
+        <li class="menu__item"><a class="link" href="#5">Разное</a></li>
+    </ul>
+</div>
+<div class="content wrapper">
+    <div class="modal">
+        <div class="modal__inner">
+            <section class="card login">
+                <h3 class="card__title">Авторизация</h3>
+                <p class="text">Переход в личный кабинет</p>
+                <div class="card__body">
+                    <form class="form form_type_login clearfix" action="#">
+                        <span class="control-group">
+                            <label class="label">Адрес электронной почты</label>
+                            <input class="input" type="email" placeholder="ivanov@innopolis.ru"/>
+                        </span>
+
+                        <span class="control-group">
+                            <label class="label">Пароль</label>
+                            <input class="input" type="password" placeholder="12345"/>
+                        </span>
+
+                        <div class="form__actions">
+                            <button class="btn" type="submit">Войти</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="copyright wrapper"><a class="link" href="#">Handy team</a>, 2017</div>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="/resources/plugins/select/jquery.nice-select.min.js"></script>
+<script src="/resources/plugins/slick/slick.min.js"></script>
+<script src="/resources/js/project.js"></script>
+</body>
+
+</html>
+

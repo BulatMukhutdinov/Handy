@@ -133,6 +133,28 @@ input:-ms-input-placeholder
     vertical-align: middle;
 }
 
+.control-group
+{
+    display: block;
+    padding-right: 2px;
+    min-height: 52px;
+    margin: 0 0 20px;
+    box-sizing: border-box;
+}
+
+.control-group .label
+{
+    display: block;
+
+    margin: 0 0 5px;
+}
+
+.control-group .input,
+.control-group .select
+{
+    width: 100%;
+}
+
 .btn
 {
     font: 14px 'FGB', Arial, sans-serif;
@@ -365,6 +387,7 @@ input:-ms-input-placeholder
     border-bottom: 1px solid #f0f0f0;
 }
 
+
 .card__title p
 {
     float: left;
@@ -512,9 +535,6 @@ input:-ms-input-placeholder
 .form_type_registration .control-group
 {
     width: 49%;
-    padding: 0 2px 0 0;
-    min-height: 52px;
-    margin: 0 0 20px;
 }
 
 .form_type_registration .control-group:nth-child(odd)
@@ -528,18 +548,6 @@ input:-ms-input-placeholder
 }
 
 .form_type_registration .control-group:nth-child(3)
-{
-    width: 100%;
-}
-
-.form_type_registration .label
-{
-    display: block;
-    margin: 0 0 5px;
-}
-
-.form_type_registration .input,
-.form_type_registration .select
 {
     width: 100%;
 }
@@ -638,6 +646,14 @@ input:-ms-input-placeholder
     margin: auto;
 }
 
+.login
+{
+    width: 350px;
+    padding: 15px 20px;
+    margin: auto;
+}
+
+.login .text,
 .registration .text
 {
     padding: 10px 0 20px;
