@@ -55,6 +55,7 @@
                         <p th:if="${service.account.firstName != null}" th:text="${service.account.firstName}"></p>
                         <p th:if="${service.account.lastName != null}" th:text="${service.account.lastName}"></p>
                     </h3>
+                    <div class="card__userpic"></div>
                     <div class="card__description" th:text="${service.description}"></div>
                     <footer class="card__footer">
                         <span class="price" th:if="${service.account.price != null}" th:text="${service.account.price}"></span>

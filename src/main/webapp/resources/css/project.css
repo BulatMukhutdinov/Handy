@@ -369,11 +369,32 @@ input:-ms-input-placeholder
     margin-right: 5px;
 }
 
+.card__userpic
+{
+    width: 70px;
+    height: 70px;
+    -webkit-border-radius: 99px;
+    -moz-border-radius: 99px;
+    border-radius: 99px;
+    background: url(../i/pic_plhldr.png) no-repeat;
+    background-size: contain;
+    background-clip: content-box;
+    margin: 8px 15px 0 0;
+    float: left;
+}
+
 .card__description
 {
     position: relative;
-    padding: 10px 50px 10px 0;
-    min-height: 90px;
+    padding: 15px 20px 15px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    line-height: 14px;        /* fallback */
+    height: 60px;
+    margin-bottom: 15px;
 }
 
 .card__footer
@@ -387,7 +408,7 @@ input:-ms-input-placeholder
     float: right;
 }
 
-.card__description:after
+/*.card__description:after
 {
     position: absolute;
     top: 20px;
@@ -440,7 +461,7 @@ input:-ms-input-placeholder
 {
     background: url(../i/icons/u_2.png) 100% 0 no-repeat;
     background-size: 30%;
-}
+}*/
 /* BEGIN Footer */
 .footer
 {
