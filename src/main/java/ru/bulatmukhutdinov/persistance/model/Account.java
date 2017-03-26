@@ -20,10 +20,6 @@ public class Account {
 
     private String lastName;
 
-    private String description;
-
-    private Integer price;
-
     private String ownTelegram;
 
     private String groupTelegram;
@@ -33,6 +29,8 @@ public class Account {
     private String userPicUri;
 
     private String email;
+
+    private String phone;
 
     @Column(length = 60)
     private String password;
@@ -50,8 +48,14 @@ public class Account {
     public Account() {
         super();
         this.enabled = false;
-        this.description = "";
-        this.price = 0;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public Long getId() {
@@ -68,22 +72,6 @@ public class Account {
 
     public void setFirstName(final String firstName) {
         this.firstName = firstName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Integer getPrice() {
-        return price;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
     }
 
     public String getLastName() {
@@ -167,46 +155,4 @@ public class Account {
         this.services = services;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Account account = (Account) o;
-
-        if (enabled != account.enabled) return false;
-        if (id != null ? !id.equals(account.id) : account.id != null) return false;
-        if (firstName != null ? !firstName.equals(account.firstName) : account.firstName != null) return false;
-        if (lastName != null ? !lastName.equals(account.lastName) : account.lastName != null) return false;
-        if (description != null ? !description.equals(account.description) : account.description != null) return false;
-        if (price != null ? !price.equals(account.price) : account.price != null) return false;
-        if (ownTelegram != null ? !ownTelegram.equals(account.ownTelegram) : account.ownTelegram != null) return false;
-        if (groupTelegram != null ? !groupTelegram.equals(account.groupTelegram) : account.groupTelegram != null)
-            return false;
-        if (website != null ? !website.equals(account.website) : account.website != null) return false;
-        if (userPicUri != null ? !userPicUri.equals(account.userPicUri) : account.userPicUri != null) return false;
-        if (email != null ? !email.equals(account.email) : account.email != null) return false;
-        if (password != null ? !password.equals(account.password) : account.password != null) return false;
-        if (services != null ? !services.equals(account.services) : account.services != null) return false;
-        return roles != null ? roles.equals(account.roles) : account.roles == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
-        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (price != null ? price.hashCode() : 0);
-        result = 31 * result + (ownTelegram != null ? ownTelegram.hashCode() : 0);
-        result = 31 * result + (groupTelegram != null ? groupTelegram.hashCode() : 0);
-        result = 31 * result + (website != null ? website.hashCode() : 0);
-        result = 31 * result + (userPicUri != null ? userPicUri.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (enabled ? 1 : 0);
-        result = 31 * result + (services != null ? services.hashCode() : 0);
-        result = 31 * result + (roles != null ? roles.hashCode() : 0);
-        return result;
-    }
 }

@@ -3,8 +3,8 @@
     <title>Handy</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="/resources/css/project.css"/>
-</head>
 
+</head>
 <body class="page__body">
 <header class="header">
     <div class="wrapper">
@@ -17,10 +17,10 @@
                     <a class="link" th:text="#{label.pages.logout}" th:href="@{/logout}"></a>
             </span>
             <span sec:authorize="isAnonymous()">
-                    <a class="link" th:text="#{nav.login}" th:href="@{/login}"></a>
+                    <a href="#" class="link" id="loginLink" th:text="#{nav.login}"></a>
             </span>
             <span sec:authorize="isAnonymous()">
-                    <a class="link" th:text="#{nav.registration}" th:href="@{/registration}"></a>
+                   <a href="#" class="link" id="registrationLink" th:text="#{nav.registration}"></a>
             </span>
         </nav>
 
@@ -32,7 +32,6 @@
         </form>
     </div>
 </header>
-
 
 <div class="menu">
     <ul class="menu__list">
@@ -63,7 +62,7 @@
                     <div class="card__userpic__plhldr" th:if="${service.account.userPicUri == null}"></div>
                     <div class="card__description" th:text="${service.description}"></div>
                     <footer class="card__footer">
-                        <span class="price" th:if="${service.account.price != null}" th:text="${service.account.price}"></span>
+
                         <button class="btn" type="button" th:text="#{label.order}"></button>
                     </footer>
                 </section>
@@ -71,6 +70,72 @@
 
         </div>
     </section>
+    <div class="modal" id="loginModal" style="display: none;">
+        <div class="modal__inner">
+            <section class="card login">
+                <h3 class="card__title" th:text="#{nav.auth}"></h3>
+                <p class="text" th:text="#{nav.personal.page}"></p>
+                <p id="modalAlert" th:text="#{message.badCredentials}" style="display: none;"></p>
+                <div class="card__body">
+                    <form name='f' action="login" onsubmit="return validate();" class="form form_type_login clearfix"
+                          method='POST'>
+                        <span class="control-group">
+                            <label class="label" th:text="#{label.user.email}"></label>
+                            <input id="username" name="username" class="input" type="email"
+                                   placeholder="ivanov@innopolis.ru"/>
+                        </span>
+
+                        <span class="control-group">
+                            <label class="label" th:text="#{label.user.password}"></label>
+                            <input id="password" name="password" class="input" type="password" placeholder="12345"/>
+                        </span>
+
+                        <div class="form__actions">
+                            <button class="btn" id="loginSubmit" type="submit" th:text="#{nav.login}"></button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!--REGISTRATION-->
+    <div class="modal" id="registrationModal" style="display: none;">
+        <div class="modal__inner">
+            <section class="card registration">
+                <h3 class="card__title">Регистрация</h3>
+                <p class="text">Для размещения информации о своих услугах на сайте <br/>пройдите простую регистрацию</p>
+                <div class="card__body">
+                    <form class="form form_type_registration clearfix" action="#" method="post">
+                        <span class="control-group">
+                            <label class="label">Имя</label>
+                            <input class="input" type="text" name="firstName" placeholder="Введите имя"/>
+                        </span>
+                        <span class="control-group">
+                            <label class="label">Фамилия</label>
+                            <input class="input" type="text" name="lastName" placeholder="Введите фамилию"/>
+                        </span>
+                        <span class="control-group">
+                            <label class="label">Адрес электронной почты</label>
+                            <input class="input" type="email" name="email" placeholder="ivanov@innopolis.ru"/>
+                        </span>
+
+                        <span class="control-group">
+                            <label class="label">Телефон</label>
+                            <input class="input" name="phone" type="text" placeholder="+79998009090"/>
+                        </span>
+                        <span class="control-group">
+                            <label class="label">Пароль</label>
+                            <input class="input" type="password" name="password" placeholder="12345"/>
+                        </span>
+
+                        <div class="form__actions">
+                            <button class="btn" type="submit">Зарегистрироваться</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
 
 </div>
 
@@ -82,7 +147,36 @@
 <script src="/resources/plugins/select/jquery.nice-select.min.js"></script>
 <script src="/resources/plugins/slick/slick.min.js"></script>
 <script src="/resources/js/project.js"></script>
+<script>
+
+    $(document).ready(function () {
+        $("#loginLink").click(function () {
+            $("#loginModal").fadeIn();
+        });
+        $("#registrationLink").click(function () {
+            $("#registrationModal").fadeIn();
+        });
+        var hasError = getParameterByName("authError");
+        var alertContainer = $("#modalAlert");
+        if (hasError == "true") {
+            $("#loginModal").show();
+            alertContainer.fadeIn();
+        }
+    });
+    /*<![CDATA[*/
+    function getParameterByName(name, url) {
+        if (!url) {
+            url = window.location.href;
+        }
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+    /*]]>*/
+</script>
 </body>
 
 </html>
-

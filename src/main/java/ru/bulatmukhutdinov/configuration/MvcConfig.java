@@ -1,12 +1,9 @@
 package ru.bulatmukhutdinov.configuration;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.core.Ordered;
 import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.*;
@@ -25,14 +22,11 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addViewControllers(final ViewControllerRegistry registry) {
         super.addViewControllers(registry);
-        registry.addViewController("/registration");
-        registry.addViewController("/registrationCaptcha");
         registry.addViewController("/logout");
         registry.addViewController("/login");
         registry.addViewController("/expiredAccount");
         registry.addViewController("/badUser");
         registry.addViewController("/emailError");
-        registry.addViewController("/home");
         registry.addViewController("/invalidSession");
         registry.addViewController("/successRegister");
         registry.addViewController("/forgetPassword");
@@ -68,16 +62,6 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         return resolver;
     }
 
-
-//    @Bean
-//    public MessageSource messageSource() {
-//        final ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-//        messageSource.setBasename("messages");
-//        messageSource.setUseCodeAsDefaultMessage(true);
-//        messageSource.setDefaultEncoding("UTF-8");
-//        messageSource.setCacheSeconds(0);
-//        return messageSource;
-//    }
 
     @Bean
     public EmailValidator usernameValidator() {

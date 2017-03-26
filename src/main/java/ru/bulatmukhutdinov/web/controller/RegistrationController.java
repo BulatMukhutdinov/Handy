@@ -7,9 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.MessageSource;
 import org.springframework.core.env.Environment;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,6 +45,12 @@ public class RegistrationController {
     private AccountService accountService;
 
     @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private UserDetailsService userDetailsService;
+
+    @Autowired
     private SecurityAccountService securityAccountService;
 
     @Autowired
@@ -59,6 +70,22 @@ public class RegistrationController {
     }
 
     // Registration
+    @RequestMapping(value = "/home", method = RequestMethod.POST)
+    public String signup(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName,
+                         @RequestParam("email") String email, @RequestParam("phone") String phone,
+                         @RequestParam("password") String password, final HttpServletRequest request) {
+        AccountDto accountDto = new AccountDto(firstName, lastName, password, email, phone);
+        try {
+            final Account registered = accountService.registerNewAccount(accountDto);
+            eventPublisher.publishEvent(new OnRegistrationCompleteEvent(registered, request.getLocale(), getAppUrl(request)));
+
+        } catch (DataIntegrityViolationException e) {
+            System.out.println(e);
+        }
+
+        return "home";
+
+    }
 
     @RequestMapping(value = "/user/registration", method = RequestMethod.POST)
     @ResponseBody
@@ -74,14 +101,15 @@ public class RegistrationController {
     public String confirmRegistration(final Locale locale, final Model model, @RequestParam("token") final String token) throws UnsupportedEncodingException {
         final String result = accountService.validateVerificationToken(token);
         if (result.equals("valid")) {
-            final Account account = accountService.getAccount(token);
-            System.out.println(account);
-//            if (account.isUsing2FA()) {
-//                model.addAttribute("qr", accountService.generateQRUrl(account));
-//                return "redirect:/qrcode.html?lang=" + locale.getLanguage();
+//            final Account account = accountService.getAccount(token);
+//            UserDetails userDetails = userDetailsService.loadUserByUsername(account.getEmail());
+//            UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, account.getPassword(), userDetails.getAuthorities());
+//            authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+//            if (usernamePasswordAuthenticationToken.isAuthenticated()) {
+//                SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
 //            }
-            model.addAttribute("message", messages.getMessage("message.accountVerified", null, locale));
-            return "redirect:/login?lang=" + locale.getLanguage();
+//            model.addAttribute("message", messages.getMessage("message.accountVerified", null, locale));
+            return "redirect:/home";
         }
 
         model.addAttribute("message", messages.getMessage("auth.message." + result, null, locale));

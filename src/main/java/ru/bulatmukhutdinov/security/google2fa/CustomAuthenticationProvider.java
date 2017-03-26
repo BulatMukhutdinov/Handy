@@ -18,7 +18,6 @@ public class CustomAuthenticationProvider extends DaoAuthenticationProvider {
 
     @Override
     public Authentication authenticate(Authentication auth) throws AuthenticationException {
-        final String verificationCode = ((CustomWebAuthenticationDetails) auth.getDetails()).getVerificationCode();
         final Account account = userRepository.findByEmail(auth.getName());
         if ((account == null)) {
             throw new BadCredentialsException("Invalid username or password");

@@ -29,20 +29,25 @@ public class AccountDto {
     @Size(min = 1)
     private String email;
 
-    private String description;
+    private String phone;
 
-    private Integer price;
-
-
-    public AccountDto(String firstName, String lastName, String email, String description, Integer price) {
+    public AccountDto(String firstName, String lastName, String password, String email, String phone) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.password = password;
         this.email = email;
-        this.description = description;
-        this.price = price;
+        this.phone = phone;
     }
 
     public AccountDto() {
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getEmail() {
@@ -95,19 +100,5 @@ public class AccountDto {
         this.matchingPassword = matchingPassword;
     }
 
-    public String getDescription() {
-        return description;
-    }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Integer getPrice() {
-        return price;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
 }

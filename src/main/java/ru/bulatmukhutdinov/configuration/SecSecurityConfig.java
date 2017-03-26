@@ -63,10 +63,10 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/home*","/*", "/login*", "/logout*", "/signin/**", "/signup/**",
-                        "/user/registration*", "/registrationConfirm*", "/expiredAccount*", "/registration*",
-                        "/badUser*", "/user/resendRegistrationToken*", "/forgetPassword*", "/user/resetPassword*",
-                        "/user/changePassword*", "/emailError*", "/resources/**", "/old/user/registration*", "/successRegister*", "/qrcode*").permitAll()
+                .antMatchers("/home*","/", "/logout*",
+                        "/registrationConfirm*",
+                        "/badUser*", "/forgetPassword*",
+                        "/emailError*", "/resources/**",  "/successRegister*").permitAll()
                 .antMatchers("/invalidSession*").anonymous()
                 .antMatchers("/user/updatePassword*", "/user/savePassword*", "/updatePassword*").hasAuthority("CHANGE_PASSWORD_PRIVILEGE")
                 .anyRequest().hasAuthority("READ_PRIVILEGE")
@@ -74,7 +74,7 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login")
                 .defaultSuccessUrl("/home")
-                .failureUrl("/login?error=true")
+                .failureUrl("/home?authError=true")
                 .successHandler(myAuthenticationSuccessHandler)
                 .failureHandler(authenticationFailureHandler)
                 .authenticationDetailsSource(authenticationDetailsSource)
@@ -88,7 +88,7 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutSuccessHandler(myLogoutSuccessHandler)
                 .invalidateHttpSession(false)
-                .logoutSuccessUrl("/logout?logSucc=true")
+                .logoutSuccessUrl("/home")
                 .deleteCookies("JSESSIONID")
                 .permitAll();
         // @formatter:on

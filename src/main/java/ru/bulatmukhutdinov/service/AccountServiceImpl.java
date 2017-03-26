@@ -66,6 +66,7 @@ public class AccountServiceImpl implements AccountService {
         account.setLastName(accountDto.getLastName());
         account.setPassword(passwordEncoder.encode(accountDto.getPassword()));
         account.setEmail(accountDto.getEmail());
+        account.setPhone(accountDto.getPhone());
         Set<Role> roles = new HashSet<>();
         roles.add(roleRepository.findByName("ROLE_USER"));
         account.setRoles(roles);
@@ -181,7 +182,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public String generateQRUrl(Account Account) throws UnsupportedEncodingException {
-        return QR_PREFIX + URLEncoder.encode(String.format("otpauth://totp/%s:%s?secret=%s&issuer=%s", APP_NAME, Account.getEmail(),  APP_NAME), "UTF-8");
+        return QR_PREFIX + URLEncoder.encode(String.format("otpauth://totp/%s:%s?secret=%s&issuer=%s", APP_NAME, Account.getEmail(), APP_NAME), "UTF-8");
     }
 
     @Override
