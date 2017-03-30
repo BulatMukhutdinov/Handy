@@ -12,4 +12,10 @@ $(function() {
     $('.section_size_2 .slider').slick({
         slidesToShow: 2
     });
+
+    $('.slider_type_examples').slick({
+        slidesToShow: 3,
+        centerMode: true,
+        variableWidth: true
+    });
 });
