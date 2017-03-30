@@ -54,7 +54,6 @@
                         <p th:if="${service.account.firstName != null}" th:text="${service.account.firstName}"></p>
                         <p th:if="${service.account.lastName != null}" th:text="${service.account.lastName}"></p>
                     </h3>
-                    <!--<div class="card__userpic"></div>-->
 
                     <div th:if="${service.account.userPicUri != null}">
                         <img class="card__userpic" th:src="@{'/resources/i/' + ${service.account.userPicUri}}"></img>
@@ -70,6 +69,7 @@
 
         </div>
     </section>
+    <!--LOGIN-->
     <div class="modal" id="loginModal" style="display: none;">
         <div class="modal__inner">
             <section class="card login">
@@ -98,6 +98,7 @@
             </section>
         </div>
     </div>
+
     <!--REGISTRATION-->
     <div class="modal" id="registrationModal" style="display: none;">
         <div class="modal__inner">
@@ -137,6 +138,59 @@
         </div>
     </div>
 
+    <!--SERVICE-->
+    <div class="modal" id="serviceModal" style="display: none;">
+        <div class="modal__inner">
+            <section class="card service">
+                <div class="card__head">
+                    <div id="personalInfo">
+                        <div class="card__userpic__plhldr"></div>
+                        <div id="personAndServiceName">
+                            <h2>Анна Швабрович</h2>
+                            <p>Сухая уборка квартиры и дома</p>
+                        </div>
+                    </div>
+                    <div id="priceInfo">
+                        <p>Оплата наличными</p>
+                        <p>1500 рублей</p>
+                    </div>
+                </div>
+                <div class="card__body">
+                    <form class="form form_type_booking clearfix" action="#" method="post">
+                        <span class="control-group">
+                            <label class="label">Ваше имя</label>
+                            <input class="input" type="text" name="name" placeholder="Иван"/>
+                        </span>
+                        <span class="control-group">
+                            <label class="label">Дата</label>
+                            <input class="input" type="date" name="date" placeholder="01.05.2017"/>
+                        </span>
+                        <span class="control-group">
+                            <label class="label">Время</label>
+                            <input class="input" type="time" name="time" placeholder="21:00"/>
+                        </span>
+                        <span class="control-group">
+                            <label class="label">Телефон</label>
+                            <input class="input" name="phone" type="tel" placeholder="+79991554859"/>
+                        </span>
+                        <span class="control-group">
+                            <label class="label">Адрес</label>
+                            <input class="input" name="address" type="text" placeholder="Иннополис, улица Спортивная…"/>
+                        </span>
+                        <span class="control-group">
+                            <label class="label">Ваши пожелания</label>
+                            <textarea class="input" name="comments" placeholder="Привет! Было бы здорово, если…"></textarea>
+                        </span>
+
+                        <div class="form__actions">
+                            <button id="serviceSendForm" type="submit">Отправить заявку</button>
+                            <button class="btn" id="aboutService" type="button">Подробнее об услуге</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
 </div>
 
 <footer class="footer">
@@ -153,28 +207,58 @@
         $("#loginLink").click(function () {
             $("#loginModal").fadeIn();
 
-            setTimeout(function () {$(document).click(function(event) {
-                if (!$(event.target).closest('section.card.login').length) {
+            setTimeout(function () {
+                $(document).click(function(event) {
+                    if (!$(event.target).closest('section.card.login').length) {
                         if ($('#loginModal').is(":visible")) {
                             $('#loginModal').fadeOut();
                         }
                     $(this).unbind(event);
-                }
-            });}, 2000);
+                    }
+                });
+            }, 1000);
 
         });
         $("#registrationLink").click(function () {
             $("#registrationModal").fadeIn();
 
-            setTimeout(function () {$(document).click(function(event) {
-                if (!$(event.target).closest('section.card.registration').length) {
+            setTimeout(function () {
+                $(document).click(function(event) {
+                    if (!$(event.target).closest('section.card.registration').length) {
                         if ($('section.card.registration').is(":visible")) {
                             $('section.card.registration').fadeOut();
                         }
                     $(this).unbind(event);
-                }
-            });}, 2000);
+                    }
+                });
+            }, 1000);
         });
+
+        $(".card__footer").find("button").click(function () {
+            var titleContainer = $(this).parent().parent().find(".card__title");
+            var firstName = titleContainer.children().eq(0).text();
+            var lastName = titleContainer.children().eq(1).text();
+            var service = $(this).parent().parent().find(".card__description").text();
+
+            console.log(firstName + lastName + service);
+
+            $("#personalInfo").find("h2").text(firstName + " " + lastName);
+            $("#personalInfo").find("p").text(service);
+
+            $("#serviceModal").fadeIn();
+
+            setTimeout(function () {
+                $(document).click(function(event) {
+                    if (!$(event.target).closest('section.card.service').length) {
+                        if ($('section.card.service').is(":visible")) {
+                            $('#serviceModal').fadeOut();
+                        }
+                        $(this).unbind(event);
+                    }
+                });
+            }, 1000);
+        });
+
         var hasError = getParameterByName("authError");
         var alertContainer = $("#modalAlert");
         if (hasError == "true") {
