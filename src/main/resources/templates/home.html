@@ -152,9 +152,28 @@
     $(document).ready(function () {
         $("#loginLink").click(function () {
             $("#loginModal").fadeIn();
+
+            setTimeout(function () {$(document).click(function(event) {
+                if (!$(event.target).closest('section.card.login').length) {
+                        if ($('#loginModal').is(":visible")) {
+                            $('#loginModal').fadeOut();
+                        }
+                    $(this).unbind(event);
+                }
+            });}, 2000);
+
         });
         $("#registrationLink").click(function () {
             $("#registrationModal").fadeIn();
+
+            setTimeout(function () {$(document).click(function(event) {
+                if (!$(event.target).closest('section.card.registration').length) {
+                        if ($('section.card.registration').is(":visible")) {
+                            $('section.card.registration').fadeOut();
+                        }
+                    $(this).unbind(event);
+                }
+            });}, 2000);
         });
         var hasError = getParameterByName("authError");
         var alertContainer = $("#modalAlert");
@@ -162,6 +181,11 @@
             $("#loginModal").show();
             alertContainer.fadeIn();
         }
+
+
+        $(".modal").click(function() {
+            console.log("Clicked!");
+        });
     });
     /*<![CDATA[*/
     function getParameterByName(name, url) {
