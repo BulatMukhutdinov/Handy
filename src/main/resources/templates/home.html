@@ -225,7 +225,7 @@
                 $(document).click(function(event) {
                     if (!$(event.target).closest('section.card.registration').length) {
                         if ($('section.card.registration').is(":visible")) {
-                            $('section.card.registration').fadeOut();
+                            $('#registrationModal').fadeOut();
                         }
                     $(this).unbind(event);
                     }
