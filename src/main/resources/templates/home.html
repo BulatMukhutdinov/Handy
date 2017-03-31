@@ -11,6 +11,8 @@
         <h1 class="company">Handy</h1>
 
         <nav class="header__nav">
+            <!--<a class="link" href="?lang=en" th:text="#{label.form.loginEnglish}"></a>-->
+            <!--<a class="link" href="?lang=ru" th:text="#{label.form.loginRussian}"></a>-->
             <a class="link" th:text="#{nav.about}" th:href="@{/admin}"></a>
             <span sec:authorize="isAuthenticated()">
                     <a class="link" th:text="#{label.pages.logout}" th:href="@{/logout}"></a>
@@ -178,7 +180,8 @@
                         </span>
                         <span class="control-group">
                             <label class="label">Ваши пожелания</label>
-                            <textarea class="input" name="comments" placeholder="Привет! Было бы здорово, если…"></textarea>
+                            <textarea class="input" name="comments"
+                                      placeholder="Привет! Было бы здорово, если…"></textarea>
                         </span>
 
                         <div class="form__actions">
@@ -207,12 +210,12 @@
             $("#loginModal").fadeIn();
 
             setTimeout(function () {
-                $(document).click(function(event) {
+                $(document).click(function (event) {
                     if (!$(event.target).closest('section.card.login').length) {
                         if ($('#loginModal').is(":visible")) {
                             $('#loginModal').fadeOut();
                         }
-                    $(this).unbind(event);
+                        $(this).unbind(event);
                     }
                 });
             }, 1000);
@@ -222,12 +225,12 @@
             $("#registrationModal").fadeIn();
 
             setTimeout(function () {
-                $(document).click(function(event) {
+                $(document).click(function (event) {
                     if (!$(event.target).closest('section.card.registration').length) {
                         if ($('section.card.registration').is(":visible")) {
                             $('#registrationModal').fadeOut();
                         }
-                    $(this).unbind(event);
+                        $(this).unbind(event);
                     }
                 });
             }, 1000);
@@ -247,7 +250,7 @@
             $("#serviceModal").fadeIn();
 
             setTimeout(function () {
-                $(document).click(function(event) {
+                $(document).click(function (event) {
                     if (!$(event.target).closest('section.card.service').length) {
                         if ($('section.card.service').is(":visible")) {
                             $('#serviceModal').fadeOut();
@@ -266,7 +269,7 @@
         }
 
 
-        $(".modal").click(function() {
+        $(".modal").click(function () {
             console.log("Clicked!");
         });
     });
