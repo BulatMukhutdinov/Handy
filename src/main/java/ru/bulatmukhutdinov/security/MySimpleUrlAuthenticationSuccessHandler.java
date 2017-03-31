@@ -45,7 +45,7 @@ public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSu
             return;
         }
 
-        redirectStrategy.sendRedirect(request, response, "/home");
+        redirectStrategy.sendRedirect(request, response, "/personal");
     }
 
 

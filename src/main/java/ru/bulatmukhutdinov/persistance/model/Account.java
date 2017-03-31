@@ -1,12 +1,8 @@
 package ru.bulatmukhutdinov.persistance.model;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
+import java.util.Date;
 import java.util.Set;
-
-import org.jboss.aerogear.security.otp.api.Base32;
 
 @Entity
 @Table(name = "account")
@@ -32,12 +28,24 @@ public class Account {
 
     private String phone;
 
+    private String description;
+
     @Column(length = 60)
     private String password;
 
     private boolean enabled;
 
-    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Integer age;
+
+    private Double lengthOfService;
+
+    private Integer workNumber;
+
+    private Date lastWork;
+
+    private String city;
+
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Service> services;
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -48,6 +56,54 @@ public class Account {
     public Account() {
         super();
         this.enabled = false;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public Integer getWorkNumber() {
+        return workNumber;
+    }
+
+    public void setWorkNumber(Integer workNumber) {
+        this.workNumber = workNumber;
+    }
+
+    public Date getLastWork() {
+        return lastWork;
+    }
+
+    public void setLastWork(Date lastWork) {
+        this.lastWork = lastWork;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public Double getLengthOfService() {
+        return lengthOfService;
+    }
+
+    public void setLengthOfService(Double lengthOfService) {
+        this.lengthOfService = lengthOfService;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getPhone() {

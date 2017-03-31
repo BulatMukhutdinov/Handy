@@ -1,4 +1,4 @@
-<html class="page">
+<html class="page" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title>Handy</title>
     <meta charset="UTF-8"/>
@@ -12,13 +12,8 @@
         <h1 class="company">Handy</h1>
 
         <nav class="header__nav">
-            <a class="link" href="#about">О нас</a>
-            <span>
-                    <a class="link" href="#">Войти</a>
-                </span>
-            <span>
-                    <a class="link" href="#">Регистрация</a>
-                </span>
+            <a class="link" th:text="#{nav.about}" th:href="@{/admin}"></a>
+            <a class="link" th:text="#{label.pages.logout}" th:href="@{/logout}"></a>
         </nav>
 
         <form class="form form_type_search search">
@@ -30,71 +25,55 @@
     </div>
 </header>
 
-<div class="menu">
-    <ul class="menu__list">
-        <li class="menu__item menu__item_state_active"><a class="link" href="#1">Сантехника</a></li>
-        <li class="menu__item"><a class="link" href="#2">Электроника</a></li>
-        <li class="menu__item"><a class="link" href="#3">Уборка</a></li>
-        <li class="menu__item"><a class="link" href="#4">Косметология</a></li>
-        <li class="menu__item"><a class="link" href="#5">Разное</a></li>
-    </ul>
-</div>
 <div class="content wrapper clearfix">
     <aside class="sidebar">
         <section class="card profile">
             <header class="profile__header">
                 <div class="profile__photo">
-                    <img class="img" src="http://ufa-room.ru/uploads/ufa/2016/09/t3CxwlpHJsI-200x200.jpg"></img>
+                    <img class="img" th:src="@{'/resources/i/' + ${account.userPicUri}}"></img>
                 </div>
-                <h3 class="profile__name">Анна Швабрович</h3>
-                <div class="profile__spec">Профессиональная уборка</div>
-                <div class="profile__price">от 1000р</div>
-                <button class="btn" type="button">Заказать услугу</button>
+                <h3 class="profile__name" th:text="${account.firstName} + ' ' + ${account.lastName}"></h3>
             </header>
 
             <div class="profile__body">
                 <section class="profile__section">
-                    <p class="profile__subtitle">Возраст и стаж</p>
+                    <p class="profile__subtitle" th:text="#{personal.age.serviceLength}"></p>
                     <p class="profile__info">
-                        <span class="profile__label">Возраст:</span>
-                        <span class="profile__value">22 года</span>
+                        <span class="profile__label" th:text="#{personal.age} + ': '"></span>
+                        <span class="profile__value" th:text="${account.age} + ' ' +#{personal.years}"></span>
                     </p>
                     <p class="profile__info">
-                        <span class="profile__label">Опыт работы:</span>
-                        <span class="profile__value">3 года</span>
-                    </p>
-                </section>
-                <section class="profile__section">
-                    <p class="profile__subtitle">Активность</p>
-                    <p class="profile__info">
-                        <span class="profile__label">Количество работ на сайте:</span>
-                        <span class="profile__value">15</span>
-                    </p>
-                    <p class="profile__info">
-                        <span class="profile__label">Последняя работа:</span>
-                        <span class="profile__value">20.03.2017</span>
+                        <span class="profile__label" th:text="#{personal.serviceLength} + ':' "></span>
+                        <span class="profile__value"
+                              th:text="${account.lengthOfService} + ' ' +#{personal.years}"></span>
                     </p>
                 </section>
                 <section class="profile__section">
-                    <p class="profile__subtitle">Местоположение</p>
+                    <p class="profile__subtitle" th:text="#{personal.activity}"></p>
                     <p class="profile__info">
-                        <span class="profile__label">Город:</span>
-                        <span class="profile__value">Иннополис</span>
+                        <span class="profile__label" th:text="#{personal.workNumber} + ':'"></span>
+                        <span class="profile__value" th:text="${account.workNumber}"></span>
+                    </p>
+                    <p class="profile__info">
+                        <span class="profile__label" th:text="#{personal.lastWork} + ':'"></span>
+                        <span class="profile__value" th:text="${account.lastWork}"></span>
                     </p>
                 </section>
                 <section class="profile__section">
-                    <span class="tag">уборка квартир</span>
-                    <span class="tag">уборка домов</span>
-                    <span class="tag">швабра</span>
-                    <span class="tag">котики</span>
+                    <p class="profile__subtitle" th:text="#{personal.location}"></p>
+                    <p class="profile__info">
+                        <span class="profile__label" th:text="#{personal.city} + ':'"></span>
+                        <span class="profile__value" th:text="${account.city}"></span>
+                    </p>
                 </section>
             </div>
         </section>
     </aside>
     <div class="main">
         <section class="card">
-            <h3 class="card__title">Обо мне</h3>
-            <div class="card__description">Помешана на уборке — имею высшее уборческое образование, родилась со шваброй в руках. Обожаю запах чистоты и влажные тряпки. Есть собственный транспорт. Аллергик. Замужем за мистером Пропером.</div>
+            <h3 class="card__title" th:text="#{personal.about}"></h3>
+            <div class="card__description" th:text="${account.description}">
+            </div>
         </section>
 
         <section class="card">
@@ -127,12 +106,14 @@
                 <div class="slider slider_type_examples">
                     <div class="slider__item">
                         <div class="photo">
-                            <img class="img" src="https://veliver.ru/wp-content/uploads/2015/12/gigienicheskaia-uborka-kvartiri.jpg"></img>
+                            <img class="img"
+                                 src="https://veliver.ru/wp-content/uploads/2015/12/gigienicheskaia-uborka-kvartiri.jpg"></img>
                         </div>
                     </div>
                     <div class="slider__item">
                         <div class="photo">
-                            <img class="img" src="http://lady-vishenka.com/wp-content/uploads/mesta-v-dome-dlya-uborki_mini-250x150.jpg"></img>
+                            <img class="img"
+                                 src="http://lady-vishenka.com/wp-content/uploads/mesta-v-dome-dlya-uborki_mini-250x150.jpg"></img>
                         </div>
                     </div>
                     <div class="slider__item">
@@ -147,6 +128,18 @@
                     </div>
                 </div>
             </div>
+            <form method="POST" enctype="multipart/form-data" action="/">
+                <table>
+                    <tr>
+                        <td>File to upload:</td>
+                        <td><input type="file" name="file"/></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" value="Upload"/></td>
+                    </tr>
+                </table>
+            </form>
         </section>
 
         <section class="card">

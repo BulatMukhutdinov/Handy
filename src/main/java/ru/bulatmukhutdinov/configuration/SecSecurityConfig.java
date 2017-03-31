@@ -63,17 +63,17 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/home*","/", "/logout*",
+                .antMatchers("/home*", "/", "/logout*",
                         "/registrationConfirm*",
                         "/badUser*", "/forgetPassword*",
-                        "/emailError*", "/resources/**",  "/successRegister*").permitAll()
+                        "/emailError*", "/resources/**", "/successRegister*").permitAll()
                 .antMatchers("/invalidSession*").anonymous()
                 .antMatchers("/user/updatePassword*", "/user/savePassword*", "/updatePassword*").hasAuthority("CHANGE_PASSWORD_PRIVILEGE")
                 .anyRequest().hasAuthority("READ_PRIVILEGE")
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/home")
+                .defaultSuccessUrl("/personal")
                 .failureUrl("/home?authError=true")
                 .successHandler(myAuthenticationSuccessHandler)
                 .failureHandler(authenticationFailureHandler)

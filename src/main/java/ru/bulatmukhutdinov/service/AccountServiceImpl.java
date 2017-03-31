@@ -70,6 +70,7 @@ public class AccountServiceImpl implements AccountService {
         Set<Role> roles = new HashSet<>();
         roles.add(roleRepository.findByName("ROLE_USER"));
         account.setRoles(roles);
+        account.setWorkNumber(0);
         return repository.save(account);
     }
 
