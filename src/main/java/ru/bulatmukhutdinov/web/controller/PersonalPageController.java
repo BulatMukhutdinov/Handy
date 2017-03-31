@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.bulatmukhutdinov.dto.AccountDto;
 import ru.bulatmukhutdinov.persistance.model.Account;
 import ru.bulatmukhutdinov.storage.StorageService;
@@ -29,7 +28,7 @@ public class PersonalPageController {
 
 
     @RequestMapping(value = "/personal", method = RequestMethod.GET)
-    public String getContractor(final Model model) {
+    public String getPersonal(final Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Account account = (Account) auth.getPrincipal();
         AccountDto accountDto = new AccountDto(account);
@@ -39,12 +38,8 @@ public class PersonalPageController {
 
     @PostMapping("/")
     public String handleFileUpload(@RequestParam("file") MultipartFile file,
-                                   RedirectAttributes redirectAttributes) {
-
+                                   final Model model) {
         storageService.store(file);
-        redirectAttributes.addFlashAttribute("message",
-                "You successfully uploaded " + file.getOriginalFilename() + "!");
-
-        return "redirect:/";
+        return getPersonal(model);
     }
 }
