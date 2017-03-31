@@ -1,6 +1,7 @@
 package ru.bulatmukhutdinov.dto;
 
 import ru.bulatmukhutdinov.persistance.model.Account;
+import ru.bulatmukhutdinov.persistance.model.Photo;
 import ru.bulatmukhutdinov.persistance.model.Service;
 import ru.bulatmukhutdinov.validation.PasswordMatches;
 import ru.bulatmukhutdinov.validation.ValidEmail;
@@ -42,6 +43,8 @@ public class AccountDto {
 
     private List<ServiceDto> serviceDtos;
 
+    private List<String> photos;
+
     private String userPicUri;
 
     private int age;
@@ -81,6 +84,18 @@ public class AccountDto {
         for (Service service : account.getServices()) {
             serviceDtos.add(new ServiceDto(service.getDescription()));
         }
+        this.photos = new ArrayList<>();
+        for (Photo photo : account.getPhotos()) {
+            this.photos.add(photo.getPath());
+        }
+    }
+
+    public List<String> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<String> photos) {
+        this.photos = photos;
     }
 
     public String getCity() {

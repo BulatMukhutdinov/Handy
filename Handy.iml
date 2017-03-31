@@ -41,6 +41,7 @@
     <orderEntry type="library" name="Maven: org.passay:passay:1.0" level="project" />
     <orderEntry type="library" name="Maven: org.cryptacular:cryptacular:1.0" level="project" />
     <orderEntry type="library" name="Maven: org.bouncycastle:bcprov-jdk15on:1.50" level="project" />
+    <orderEntry type="library" name="Maven: commons-lang:commons-lang:2.3" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.aerogear:aerogear-otp-java:1.0.0" level="project" />
     <orderEntry type="library" name="Maven: com.google.guava:guava:20.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-data-jpa:1.4.3.RELEASE" level="project" />

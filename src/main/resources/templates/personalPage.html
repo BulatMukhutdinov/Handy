@@ -104,31 +104,15 @@
             <h3 class="card__title">Примеры работ</h3>
             <div class="card__description">
                 <div class="slider slider_type_examples">
-                    <div class="slider__item">
+                    <div class="slider__item" th:each="photo: ${account.photos}">
                         <div class="photo">
                             <img class="img"
-                                 src="https://veliver.ru/wp-content/uploads/2015/12/gigienicheskaia-uborka-kvartiri.jpg"></img>
-                        </div>
-                    </div>
-                    <div class="slider__item">
-                        <div class="photo">
-                            <img class="img"
-                                 src="http://lady-vishenka.com/wp-content/uploads/mesta-v-dome-dlya-uborki_mini-250x150.jpg"></img>
-                        </div>
-                    </div>
-                    <div class="slider__item">
-                        <div class="photo">
-                            <img class="img" src="http://www.alfa-servis.ru/news/images/03-08-2013-2.jpg"></img>
-                        </div>
-                    </div>
-                    <div class="slider__item">
-                        <div class="photo">
-                            <img class="img" src="http://www.placeanad.ru/image/472ss.jpg"></img>
+                                 th:src="@{'/resources/i/photos/' + ${photo}}"></img>
                         </div>
                     </div>
                 </div>
             </div>
-            <form method="POST" enctype="multipart/form-data" action="/">
+            <form method="POST" enctype="multipart/form-data" action="/personal">
                 <table>
                     <tr>
                         <td>File to upload:</td>

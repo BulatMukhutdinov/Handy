@@ -8,15 +8,15 @@ import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.bulatmukhutdinov.dto.AccountDto;
-import ru.bulatmukhutdinov.persistance.model.Role;
-import ru.bulatmukhutdinov.web.error.AccountAlreadyExistException;
 import ru.bulatmukhutdinov.persistance.dao.AccountRepository;
 import ru.bulatmukhutdinov.persistance.dao.PasswordResetTokenRepository;
 import ru.bulatmukhutdinov.persistance.dao.RoleRepository;
 import ru.bulatmukhutdinov.persistance.dao.VerificationTokenRepository;
 import ru.bulatmukhutdinov.persistance.model.Account;
 import ru.bulatmukhutdinov.persistance.model.PasswordResetToken;
+import ru.bulatmukhutdinov.persistance.model.Role;
 import ru.bulatmukhutdinov.persistance.model.VerificationToken;
+import ru.bulatmukhutdinov.web.error.AccountAlreadyExistException;
 
 import javax.transaction.Transactional;
 import java.io.UnsupportedEncodingException;

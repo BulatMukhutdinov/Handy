@@ -4,7 +4,7 @@ import ru.bulatmukhutdinov.dto.AccountDto;
 import ru.bulatmukhutdinov.persistance.model.Account;
 import ru.bulatmukhutdinov.persistance.model.PasswordResetToken;
 import ru.bulatmukhutdinov.persistance.model.VerificationToken;
-import ru.bulatmukhutdinov.web.error.*;
+import ru.bulatmukhutdinov.web.error.AccountAlreadyExistException;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
