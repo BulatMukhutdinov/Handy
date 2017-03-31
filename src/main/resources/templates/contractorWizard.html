@@ -1,0 +1,289 @@
+<html class="page" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <link rel="stylesheet" href="/resources/css/project.css"/>
+    <link rel="stylesheet" href="/resources/css/stepper.css"/>
+    <link rel="stylesheet" href="/resources/plugins/dropzone/dropzone.css"/>
+</head>
+<body class="page__body">
+
+<header class="header">
+    <div class="wrapper">
+        <a class="logo" href="/"></a>
+        <h1 class="company">Handy</h1>
+
+        <nav class="header__nav">
+            <!--<a class="link" href="?lang=en" th:text="#{label.form.loginEnglish}"></a>-->
+            <!--<a class="link" href="?lang=ru" th:text="#{label.form.loginRussian}"></a>-->
+            <a class="link" th:text="#{nav.about}" th:href="@{/admin}"></a>
+            <span sec:authorize="isAuthenticated()">
+                    <a class="link" th:text="#{label.pages.logout}" th:href="@{/logout}"></a>
+            </span>
+            <span sec:authorize="isAnonymous()">
+                    <a href="#" class="link" id="loginLink" th:text="#{nav.login}"></a>
+            </span>
+            <span sec:authorize="isAnonymous()">
+                   <a href="#" class="link" id="registrationLink" th:text="#{nav.registration}"></a>
+            </span>
+        </nav>
+
+        <form class="form form_type_search search">
+                <span class="input-control">
+                    <label class="search__toggler" for="search"><i class="material-icons">search</i></label>
+                    <input id="search" class="input search__input" placeholder="Чем могу помочь?"/>
+                </span>
+        </form>
+    </div>
+</header>
+
+<div class="content wrapper">
+    <section class="card wizard">
+
+        <div class="mdl-card__supporting-text">
+
+            <div class="mdl-stepper-horizontal-alternative">
+                <div class="mdl-stepper-step active-step" id="step1Indicator">
+                    <div class="mdl-stepper-circle"><span>1</span></div>
+                    <div class="mdl-stepper-title">О себе</div>
+                    <div class="mdl-stepper-bar-left"></div>
+                    <div class="mdl-stepper-bar-right"></div>
+                </div>
+                <!--active-step-->
+                <!--step-done-->
+                <!--editable-step-->
+                <div class="mdl-stepper-step" id="step2Indicator">
+                    <div class="mdl-stepper-circle"><span>2</span></div>
+                    <div class="mdl-stepper-title">Услуги и цены</div>
+
+                    <div class="mdl-stepper-bar-left"></div>
+                    <div class="mdl-stepper-bar-right"></div>
+                </div>
+                <div class="mdl-stepper-step" id="step3Indicator">
+                    <div class="mdl-stepper-circle"><span>3</span></div>
+                    <div class="mdl-stepper-title">Примеры работ</div>
+                    <div class="mdl-stepper-optional">Необязательно</div>
+                    <div class="mdl-stepper-bar-left"></div>
+                    <div class="mdl-stepper-bar-right"></div>
+                </div>
+                <div class="mdl-stepper-step" id="step4Indicator">
+                    <div class="mdl-stepper-circle"><span>4</span></div>
+                    <div class="mdl-stepper-title">Своё фото</div>
+                    <div class="mdl-stepper-optional">Необязательно</div>
+                    <div class="mdl-stepper-bar-left"></div>
+                    <div class="mdl-stepper-bar-right"></div>
+                </div>
+            </div>
+
+        </div>
+        <div class="card__body">
+            <form class="form form_type_wizard clearfix" action="#" method="post">
+                <div class="form__content" id="step1">
+                    <div class="wizard__group">
+                        <span class="control-group">
+                            <label class="label">Дата рождения</label>
+                            <input class="input" type="date" name="date" placeholder="13.01.1994"/>
+                        </span>
+                        <span class="control-group">
+                            <label class="label">Лет опыта</label>
+                            <input class="input" type="number" name="experience" placeholder="10"/>
+                        </span>
+                        <span class="control-group">
+                            <label class="label">Местоположение</label>
+                            <input class="input" name="address" type="text" placeholder="Иннополис"/>
+                        </span>
+                    </div>
+                    <span class="control-group" id="serviceInfo">
+                            <label class="label">Расскажите о себе и своей работе</label>
+                            <textarea class="input" name="comments"
+                                      placeholder="Помешана на уборке — имею высшее уборческое образование, родилась со шваброй в руках. Обожаю запах чистоты и влажные тряпки. Есть собственный транспорт. Аллергик. Замужем за мистером Пропером"></textarea>
+                    </span>
+                </div>
+                <div class="form__content" id="step2" style="display: none;">
+                    <div class="service__item__first">
+                        <div class="service__form">
+                            <span class="control-group">
+                                    <label class="label">Описание услуги</label>
+                                    <input class="input" type="text" name="service[]"
+                                           placeholder="Например ремонт бытовой техники"/>
+                            </span>
+                            <div class="service-group">
+                                <span class="control-group">
+                                    <label class="label">Категория услуг</label>
+                                    <select class="input" name="categorySelect[]">
+                                        <option th:each="category: ${categories}"
+                                                th:text="${category.name}"></option>
+                                    </select>
+                                </span>
+                                <span class="control-group">
+                                        <label class="label">Стоимость услуги</label>
+                                        <input class="input" type="number" name="price[]" placeholder="500 рублей"/>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service__item__template" style="display: none">
+                        <div class="service__form">
+                            <span class="control-group">
+                                    <label class="label">Описание услуги</label>
+                                    <input class="input" type="text" name="service[]"
+                                           placeholder="Например ремонт бытовой техники"/>
+                            </span>
+                            <div class="service-group">
+                                <span class="control-group">
+                                    <label class="label">Категория услуг</label>
+                                    <select class="input" name="categorySelect[]">
+                                        <option th:each="category: ${categories}" th:text="${category.name}"></option>
+                                    </select>
+                                </span>
+                                <span class="control-group">
+                                        <label class="label">Стоимость услуги</label>
+                                        <input class="input" type="number" name="price[]" placeholder="500 рублей"/>
+                                </span>
+                            </div>
+                        </div>
+                        <img class="close" src="/resources/i/cross.png"></img>
+                    </div>
+                    <div id="servicesList">
+
+                    </div>
+                    <button class="btn" id="addService" type="button">Добавить услугу</button>
+                </div>
+                <div class="form__content" id="step3" style="display: none;">
+                    <div class="dropzone" id="examples">
+                    </div>
+                </div>
+                <div class="form__content" id="step4" style="display: none;">
+                    <div class="dropzone" id="avatar">
+                    </div>
+                </div>
+                <div class="form__actions">
+                    <button id="next" type="button">Далее</button>
+                    <button class="btn" id="prev" type="button" style="display: none;">Назад</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+
+<footer class="footer">
+    <div class="copyright wrapper"><a class="link" href="#">Handy team</a>, 2017</div>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="/resources/plugins/select/jquery.nice-select.min.js"></script>
+<script src="/resources/plugins/slick/slick.min.js"></script>
+<script src="/resources/js/project.js"></script>
+<script src="/resources/plugins/dropzone/dropzone.js"></script>
+<script>
+    Dropzone.autoDiscover = false;
+
+    var currentSlide = 1;
+
+    var validateInput = function () {
+
+    };
+
+    $(document).ready(function () {
+
+
+        $("#examples").dropzone({
+            url: "/file/post",
+            paramName: "examplePhoto",
+            uploadMultiple: true,
+            dictDefaultMessage: "Перетащите примеры своих работ в это окно",
+            addRemoveLinks: true
+        });
+
+        $("#avatar").dropzone({
+            url: "/file/post",
+            paramName: "avatar",
+            uploadMultiple: false,
+            dictDefaultMessage: "Перетащите фото профиля в это окно",
+            addRemoveLinks: true
+        });
+
+
+        $("#prev").click(function () {
+            switch (currentSlide) {
+                case 1:
+                    break;
+                case 2:
+                    $("#step2").fadeOut();
+                    $("#prev").fadeOut();
+                    setTimeout(function () {
+                        $("#step1").fadeIn()
+                    }, 500);
+                    $("#step1Indicator").removeClass("step-done").addClass("active-step");
+                    $("#step2Indicator").removeClass("step-done").removeClass("active-step");
+                    currentSlide--;
+                    break;
+                case 3:
+                    $("#step3").fadeOut();
+                    setTimeout(function () {
+                        $("#step2").fadeIn();
+                    }, 500);
+                    $("#step2Indicator").removeClass("step-done").addClass("active-step");
+                    $("#step3Indicator").removeClass("step-done").removeClass("active-step");
+                    currentSlide--;
+                    break;
+                case 4:
+                    $("#step4").fadeOut();
+                    setTimeout(function () {
+                        $("#step3").fadeIn();
+                    }, 500);
+                    $("#step3Indicator").removeClass("step-done").addClass("active-step");
+                    $("#step4Indicator").removeClass("step-done").removeClass("active-step");
+                    currentSlide--;
+                    break;
+            }
+        });
+
+        $("#next").click(function () {
+            switch (currentSlide) {
+                case 1:
+                    $("#step1").fadeOut();
+                    setTimeout(function () {
+                        $("#prev").fadeIn();
+                        $("#step2").fadeIn();
+                    }, 500);
+                    $("#step1Indicator").addClass("step-done").addClass("active-step");
+                    $("#step2Indicator").addClass("active-step");
+                    currentSlide++;
+                    break;
+                case 2:
+                    $("#step2").fadeOut();
+                    setTimeout(function () {
+                        $("#step3").fadeIn();
+                    }, 500);
+                    $("#step2Indicator").addClass("step-done").addClass("active-step");
+                    $("#step3Indicator").addClass("active-step");
+                    currentSlide++;
+                    break;
+                case 3:
+                    $("#step3").fadeOut();
+                    setTimeout(function () {
+                        $("#step4").fadeIn();
+                    }, 500);
+                    $("#step3Indicator").addClass("step-done").addClass("active-step");
+                    $("#step4Indicator").addClass("active-step");
+                    currentSlide++;
+                    break;
+                case 4:
+                    break;
+            }
+        });
+
+        $("#addService").click(function () {
+            $(".service__item__template").clone().addClass("service__item")
+                .removeClass("service__item__template")
+                .appendTo("#servicesList").fadeIn();
+
+            $(".close").click(function () {
+                $(this).parent().fadeOut().remove();
+            });
+        });
+    });
+</script>
+</body>
+</html>

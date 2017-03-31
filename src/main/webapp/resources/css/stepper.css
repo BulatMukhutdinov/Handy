@@ -1,0 +1,271 @@
+section.card.wizard {
+    width: 500px;
+    margin: auto;
+}
+
+.form_type_wizard .wizard__group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.form_type_wizard .control-group:nth-child(1)
+{
+    width: 30%;
+}
+
+.form_type_wizard .control-group:nth-child(2)
+{
+    width: 30%;
+}
+
+.form_type_wizard .control-group:nth-child(3)
+{
+    width: 30%;
+}
+
+.service__form {
+    width: 90%;
+}
+
+.service__item__first .service__form {
+    width: 100%;
+}
+
+.service__form .control-group:nth-child(1)
+{
+    width: 100%;
+}
+
+.service__form .control-group:nth-child(2)
+{
+    width: 40%;
+}
+
+.service__form .control-group:nth-child(3)
+{
+    width: 40%;
+}
+
+.service__item__first, .service__item {
+    display: flex;
+    align-content: space-between;
+    align-items: center;
+}
+
+.service__item {
+    margin-top: 20px;
+}
+
+.service-group {
+    display: flex;
+    align-content: space-between;
+}
+
+.close {
+    width: 32px;
+    height: 32px;
+    opacity: 0.3;
+    margin-left: 10px;
+}
+.close:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.form_type_wizard #serviceInfo
+{
+    width: 100%;
+    height: 120px;
+}
+
+.form_type_wizard #serviceInfo textarea
+{
+    height: 100px;
+}
+
+.form__actions{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+#next {
+    font: 14px 'FGB', Arial, sans-serif;
+    text-align: center;
+    background: #0c9eaf;
+    color: #fff;
+    height: 40px;
+    padding: 0 20px;
+    outline: none;
+    border-radius: 2px;
+    cursor: pointer;
+    text-transform: uppercase;
+    border: 0;
+}
+
+#prev {
+    background: #fff;
+    color: #0c9eaf;
+    height: 40px;
+    padding: 0 20px;
+}
+
+#addService {
+    background: #fff;
+    color: rgb(134, 134, 134);
+    height: 40px;
+    padding: 0 20px;
+}
+
+.dropzone {
+    min-height: 300px;
+}
+
+.mdl-card {
+    width: 550px;
+    min-height: 0;
+    margin: 10px auto;
+}
+
+.mdl-card__supporting-text {
+    width: 100%;
+    padding: 0;
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step {
+    width: 25%;
+    /* 100 / no_of_steps */
+}
+
+
+/* Begin actual mdl-stepper css styles */
+
+.mdl-stepper-horizontal-alternative {
+    display: table;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step {
+    display: table-cell;
+    position: relative;
+    padding: 24px;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step:active {
+    border-radius: 15% / 75%;
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step:first-child:active {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step:last-child:active {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step:hover .mdl-stepper-circle {
+    background-color: #757575;
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step:first-child .mdl-stepper-bar-left,
+.mdl-stepper-horizontal-alternative .mdl-stepper-step:last-child .mdl-stepper-bar-right {
+    display: none;
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step .mdl-stepper-circle {
+    width: 24px;
+    height: 24px;
+    margin: 0 auto;
+    background-color: #9E9E9E;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 2em;
+    font-size: 12px;
+    color: white;
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step.active-step .mdl-stepper-circle {
+    background: #0c9eaf;
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step.step-done .mdl-stepper-circle:before {
+    content: "\2714";
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step.step-done .mdl-stepper-circle *,
+.mdl-stepper-horizontal-alternative .mdl-stepper-step.editable-step .mdl-stepper-circle * {
+    display: none;
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step.editable-step .mdl-stepper-circle {
+    -moz-transform: scaleX(-1);
+    /* Gecko */
+    -o-transform: scaleX(-1);
+    /* Opera */
+    -webkit-transform: scaleX(-1);
+    /* Webkit */
+    transform: scaleX(-1);
+    /* Standard */
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step.editable-step .mdl-stepper-circle:before {
+    content: "\270E";
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step .mdl-stepper-title {
+    margin-top: 16px;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step .mdl-stepper-title,
+.mdl-stepper-horizontal-alternative .mdl-stepper-step .mdl-stepper-optional {
+    text-align: center;
+    color: rgba(0, 0, 0, .26);
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step.active-step .mdl-stepper-title {
+    font-weight: 500;
+    color: rgba(0, 0, 0, .87);
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step.active-step.step-done .mdl-stepper-title,
+.mdl-stepper-horizontal-alternative .mdl-stepper-step.active-step.editable-step .mdl-stepper-title {
+    font-weight: 300;
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step .mdl-stepper-optional {
+    font-size: 12px;
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step.active-step .mdl-stepper-optional {
+    color: rgba(0, 0, 0, .54);
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step .mdl-stepper-bar-left,
+.mdl-stepper-horizontal-alternative .mdl-stepper-step .mdl-stepper-bar-right {
+    position: absolute;
+    top: 36px;
+    height: 1px;
+    border-top: 1px solid #BDBDBD;
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step .mdl-stepper-bar-right {
+    right: 0;
+    left: 50%;
+    margin-left: 20px;
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step .mdl-stepper-bar-left {
+    left: 0;
+    right: 50%;
+    margin-right: 20px;
+}
