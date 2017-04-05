@@ -77,7 +77,7 @@
 
         </div>
         <div class="card__body">
-            <form class="form form_type_wizard clearfix" action="#" method="post">
+            <form class="form form_type_wizard clearfix" action="/wizard" method="post">
                 <div class="form__content" id="step1">
                     <div class="wizard__group">
                         <span class="control-group">
@@ -95,7 +95,7 @@
                     </div>
                     <span class="control-group" id="serviceInfo">
                             <label class="label">Расскажите о себе и своей работе</label>
-                            <textarea class="input" name="comments"
+                            <textarea class="input" name="about"
                                       placeholder="Помешана на уборке — имею высшее уборческое образование, родилась со шваброй в руках. Обожаю запах чистоты и влажные тряпки. Есть собственный транспорт. Аллергик. Замужем за мистером Пропером"></textarea>
                     </span>
                 </div>
@@ -270,6 +270,7 @@
                     currentSlide++;
                     break;
                 case 4:
+                    $(".form_type_wizard").submit();
                     break;
             }
         });

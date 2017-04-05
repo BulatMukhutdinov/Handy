@@ -5,14 +5,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import ru.bulatmukhutdinov.dto.CategoryDto;
 import ru.bulatmukhutdinov.persistance.model.Category;
 import ru.bulatmukhutdinov.persistance.model.Lang;
 import ru.bulatmukhutdinov.service.CategoryService;
 import ru.bulatmukhutdinov.service.CategoryTextService;
 import ru.bulatmukhutdinov.service.LangService;
+import ru.bulatmukhutdinov.web.util.GenericResponse;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -49,5 +54,20 @@ public class WizardController {
         model.addAttribute("categories", translatedCategories);
 
         return "contractorWizard";
+    }
+
+    @RequestMapping(value = "/wizard", method = RequestMethod.POST)
+    @ResponseBody
+    public GenericResponse signup(@RequestParam("date") Date birthDate, @RequestParam("experience") Integer experienceYears,
+                         @RequestParam("address") String location, @RequestParam("about") String about,
+                         @RequestParam("service") String[] service, @RequestParam("categorySelect") String[] categorySelect,
+                         @RequestParam("price") String[] price,
+                         final HttpServletRequest request) {
+        System.out.println(birthDate + " " + experienceYears + " " + location + " " + about);
+
+        for (int i = 0; i < service.length; i++) {
+            System.out.println(service[i] + " " + categorySelect[i] + " " + price[i]);
+        }
+        return new GenericResponse("success");
     }
 }
