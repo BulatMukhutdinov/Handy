@@ -107,18 +107,32 @@
                 <h3 class="card__title">Регистрация</h3>
                 <p class="text">Для размещения информации о своих услугах на сайте <br/>пройдите простую регистрацию</p>
                 <div class="card__body">
-                    <form class="form form_type_registration clearfix" action="#" method="post">
+                    <form class="form form_type_registration clearfix" method="post">
                         <span class="control-group">
                             <label class="label">Имя</label>
-                            <input class="input" type="text" name="firstName" placeholder="Введите имя"/>
+                            <div th:if="${firstName != null}">
+                                <input class="input" type="text" name="firstName" placeholder="Введите имя"
+                                       th:value="${firstName}"/>
+                            </div>
+                            <div th:if="${firstName == null}">
+                                <input class="input" type="text" name="firstName" placeholder="Введите имя"/>
+                            </div>
                         </span>
                         <span class="control-group">
                             <label class="label">Фамилия</label>
-                            <input class="input" type="text" name="lastName" placeholder="Введите фамилию"/>
+                             <div th:if="${lastName != null}">
+                                <input class="input" type="text" name="lastName" placeholder="Введите фамилию"
+                                       th:value="${lastName}"/>
+                            </div>
+                            <div th:if="${lastName == null}">
+                                <input class="input" type="text" name="lastName" placeholder="Введите фамилию"/>
+                            </div>
                         </span>
                         <span class="control-group">
                             <label class="label">Адрес электронной почты</label>
                             <input class="input" type="email" name="email" placeholder="ivanov@innopolis.ru"/>
+                            <label id="registrationEmailError" class="label" th:if="${registrationError != null}"
+                                   th:text="${registrationError}"></label>
                         </span>
 
                         <span class="control-group">
@@ -138,6 +152,20 @@
             </section>
         </div>
     </div>
+
+    <!--REG SUCCESS-->
+    <div class="modal" id="regSuccessModal" style="display: none;">
+        <div class="modal__inner">
+            <section class="card login">
+                <h3 class="card__title" th:text="#{label.successRegister.title}"></h3>
+                <p class="text" th:text="#{message.regSucc}"></p>
+                <div class="card__body">
+                    <button class="btn" type="button" id="regSuccBtn">Ok</button>
+                </div>
+            </section>
+        </div>
+    </div>
+
 
     <!--SERVICE-->
     <div class="modal" id="serviceModal" style="display: none;">
@@ -194,7 +222,7 @@
         </div>
     </div>
 </div>
-
+<div id="regSucc" th:if="${registrationSuccess != null}" style="display: none;"></div>
 <footer class="footer">
     <div class="copyright wrapper"><a class="link" href="#">Handy team</a>, 2017</div>
 </footer>
@@ -221,19 +249,17 @@
             }, 1000);
 
         });
+        $( "#regSuccBtn" ).click(function() {
+            $("#regSuccessModal").fadeOut();
+        });
+        if (document.getElementById('regSucc') != null) {
+            modalClick('regSuccessModal');
+        }
+        if (document.getElementById('registrationEmailError') != null) {
+            modalClick('registrationModal');
+        }
         $("#registrationLink").click(function () {
-            $("#registrationModal").fadeIn();
-
-            setTimeout(function () {
-                $(document).click(function (event) {
-                    if (!$(event.target).closest('section.card.registration').length) {
-                        if ($('section.card.registration').is(":visible")) {
-                            $('#registrationModal').fadeOut();
-                        }
-                        $(this).unbind(event);
-                    }
-                });
-            }, 1000);
+            modalClick('registrationModal');
         });
 
         $(".card__footer").find("button").click(function () {
@@ -273,6 +299,20 @@
             console.log("Clicked!");
         });
     });
+    function modalClick(name) {
+        $("#" + name).fadeIn();
+
+        setTimeout(function () {
+            $(document).click(function (event) {
+                if (!$(event.target).closest('section.card.registration').length) {
+                    if ($('section.card.registration').is(":visible")) {
+                        $("#" + name).fadeOut();
+                    }
+                    $(this).unbind(event);
+                }
+            });
+        }, 1000);
+    }
     /*<![CDATA[*/
     function getParameterByName(name, url) {
         if (!url) {
