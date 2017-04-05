@@ -104,48 +104,54 @@
     <div class="modal" id="registrationModal" style="display: none;">
         <div class="modal__inner">
             <section class="card registration">
-                <h3 class="card__title">Регистрация</h3>
-                <p class="text">Для размещения информации о своих услугах на сайте <br/>пройдите простую регистрацию</p>
+                <h3 class="card__title" th:text="#{nav.registration}"></h3>
+                <p class="text" th:text="#{reg.title}"></p>
+
+
                 <div class="card__body">
                     <form class="form form_type_registration clearfix" method="post">
                         <span class="control-group">
-                            <label class="label">Имя</label>
+                            <label class="label" th:text="#{label.user.firstName}"></label>
                             <div th:if="${firstName != null}">
-                                <input class="input" type="text" name="firstName" placeholder="Введите имя"
+                                <input class="input" type="text" name="firstName"
+                                       th:placeholder="#{reg.placeholder.firstName}"
                                        th:value="${firstName}"/>
                             </div>
                             <div th:if="${firstName == null}">
-                                <input class="input" type="text" name="firstName" placeholder="Введите имя"/>
+                                <input class="input" type="text" name="firstName"
+                                       th:placeholder="#{reg.placeholder.firstName}"/>
                             </div>
                         </span>
                         <span class="control-group">
-                            <label class="label">Фамилия</label>
+                            <label class="label" th:text="#{label.user.lastName}"></label>
                              <div th:if="${lastName != null}">
-                                <input class="input" type="text" name="lastName" placeholder="Введите фамилию"
+                                <input class="input" type="text" name="lastName"
+                                       th:placeholder="#{reg.placeholder.lastName}"
                                        th:value="${lastName}"/>
                             </div>
                             <div th:if="${lastName == null}">
-                                <input class="input" type="text" name="lastName" placeholder="Введите фамилию"/>
+                                <input class="input" type="text" name="lastName"
+                                       th:placeholder="#{reg.placeholder.lastName}"/>
                             </div>
                         </span>
                         <span class="control-group">
-                            <label class="label">Адрес электронной почты</label>
+                            <label class="label" th:text="#{label.form.loginEmail}"></label>
                             <input class="input" type="email" name="email" placeholder="ivanov@innopolis.ru"/>
                             <label id="registrationEmailError" class="label" th:if="${registrationError != null}"
                                    th:text="${registrationError}"></label>
                         </span>
 
                         <span class="control-group">
-                            <label class="label">Телефон</label>
+                            <label class="label" th:text="#{reg.phone}"></label>
                             <input class="input" name="phone" type="text" placeholder="+79998009090"/>
                         </span>
                         <span class="control-group">
-                            <label class="label">Пароль</label>
+                            <label class="label" th:text="#{reg.password}"></label>
                             <input class="input" type="password" name="password" placeholder="12345"/>
                         </span>
 
                         <div class="form__actions">
-                            <button class="btn" type="submit">Зарегистрироваться</button>
+                            <button class="btn" type="submit" th:text="#{reg.submit}"></button>
                         </div>
                     </form>
                 </div>
