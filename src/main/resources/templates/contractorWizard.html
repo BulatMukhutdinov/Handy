@@ -77,7 +77,7 @@
 
         </div>
         <div class="card__body">
-            <form class="form form_type_wizard clearfix" action="/wizard" method="post">
+            <form class="form form_type_wizard clearfix">
                 <div class="form__content" id="step1">
                     <div class="wizard__group">
                         <span class="control-group">
@@ -104,20 +104,20 @@
                         <div class="service__form">
                             <span class="control-group">
                                     <label class="label">Описание услуги</label>
-                                    <input class="input" type="text" name="service[]"
+                                    <input class="input" type="text" name="service"
                                            placeholder="Например ремонт бытовой техники"/>
                             </span>
                             <div class="service-group">
                                 <span class="control-group">
                                     <label class="label">Категория услуг</label>
-                                    <select class="input" name="categorySelect[]">
+                                    <select class="input" name="categorySelect">
                                         <option th:each="category: ${categories}"
                                                 th:text="${category.name}"></option>
                                     </select>
                                 </span>
                                 <span class="control-group">
                                         <label class="label">Стоимость услуги</label>
-                                        <input class="input" type="number" name="price[]" placeholder="500 рублей"/>
+                                        <input class="input" type="number" name="price" placeholder="500"/>
                                 </span>
                             </div>
                         </div>
@@ -126,19 +126,19 @@
                         <div class="service__form">
                             <span class="control-group">
                                     <label class="label">Описание услуги</label>
-                                    <input class="input" type="text" name="service[]"
+                                    <input class="input" type="text" name="service"
                                            placeholder="Например ремонт бытовой техники"/>
                             </span>
                             <div class="service-group">
                                 <span class="control-group">
                                     <label class="label">Категория услуг</label>
-                                    <select class="input" name="categorySelect[]">
+                                    <select class="input" name="categorySelect">
                                         <option th:each="category: ${categories}" th:text="${category.name}"></option>
                                     </select>
                                 </span>
                                 <span class="control-group">
                                         <label class="label">Стоимость услуги</label>
-                                        <input class="input" type="number" name="price[]" placeholder="500 рублей"/>
+                                        <input class="input" type="number" name="price" placeholder="500"/>
                                 </span>
                             </div>
                         </div>
@@ -188,8 +188,8 @@
 
 
         $("#examples").dropzone({
-            url: "/file/post",
-            paramName: "examplePhoto",
+            url: "/personal",
+            paramName: "file",
             uploadMultiple: true,
             dictDefaultMessage: "Перетащите примеры своих работ в это окно",
             addRemoveLinks: true
@@ -270,7 +270,9 @@
                     currentSlide++;
                     break;
                 case 4:
-                    $(".form_type_wizard").submit();
+                    $.post('/wizard', $('.form_type_wizard').serialize(), function (data) {
+                        console.log(data);
+                    }, 'json');
                     break;
             }
         });

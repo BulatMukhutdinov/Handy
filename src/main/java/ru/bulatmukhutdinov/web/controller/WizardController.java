@@ -15,9 +15,7 @@ import ru.bulatmukhutdinov.service.CategoryTextService;
 import ru.bulatmukhutdinov.service.LangService;
 import ru.bulatmukhutdinov.web.util.GenericResponse;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -58,15 +56,15 @@ public class WizardController {
 
     @RequestMapping(value = "/wizard", method = RequestMethod.POST)
     @ResponseBody
-    public GenericResponse signup(@RequestParam("date") Date birthDate, @RequestParam("experience") Integer experienceYears,
-                         @RequestParam("address") String location, @RequestParam("about") String about,
-                         @RequestParam("service") String[] service, @RequestParam("categorySelect") String[] categorySelect,
-                         @RequestParam("price") String[] price,
-                         final HttpServletRequest request) {
+    public GenericResponse signup(@RequestParam(value = "date", required = false) String birthDate, @RequestParam(value = "experience", required = false) String experienceYears,
+                                  @RequestParam("address") String location, @RequestParam("about") String about,
+                                  @RequestParam(value = "service", required = false) String[] service,
+                                  @RequestParam(value = "categorySelect", required = false) String[] categorySelect,
+                                  @RequestParam(value = "price", required = false) String[] price) {
         System.out.println(birthDate + " " + experienceYears + " " + location + " " + about);
 
         for (int i = 0; i < service.length; i++) {
-            System.out.println(service[i] + " " + categorySelect[i] + " " + price[i]);
+            System.out.println(service[i] + " " + price[i]);
         }
         return new GenericResponse("success");
     }

@@ -7,16 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import ru.bulatmukhutdinov.dto.AccountDto;
 import ru.bulatmukhutdinov.persistance.model.Account;
 import ru.bulatmukhutdinov.persistance.model.Photo;
 import ru.bulatmukhutdinov.service.AccountService;
-import ru.bulatmukhutdinov.service.PhotoService;
 import ru.bulatmukhutdinov.storage.StorageService;
 
-import java.util.Set;
+import java.util.Iterator;
 
 /**
  * Created by Reverendo on 31.03.2017.
@@ -44,14 +42,20 @@ public class PersonalPageController {
     }
 
     @RequestMapping(value = "/personal", method = RequestMethod.POST)
-    public String handleFileUpload(@RequestParam("file") MultipartFile file,
+    public String handleFileUpload(MultipartHttpServletRequest request,
                                    final Model model) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Account account = (Account) auth.getPrincipal();
-        Photo photo = new Photo(storageService.store(file), account);
-        account.getPhotos().add(photo);
-        accountService.saveRegisteredAccount(account);
+
+        Iterator<String> itr = request.getFileNames();
+
+        while (itr.hasNext()) {
+            Photo photo = new Photo(storageService.store(request.getFile(itr.next())), account);
+            account.getPhotos().add(photo);
+            accountService.saveRegisteredAccount(account);
+        }
+
         return getPersonal(model);
     }
 
