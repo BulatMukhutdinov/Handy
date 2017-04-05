@@ -96,7 +96,8 @@ public class HomeController {
     public String confirmRegistration(final Locale locale, final Model model, @RequestParam("token") final String token) throws UnsupportedEncodingException {
         final String result = accountService.validateVerificationToken(token);
         if (result.equals("valid")) {
-            return "redirect:/home";
+            model.addAttribute("registrationConfirm", "valid");
+            return getHome(locale, model);
         }
 
         model.addAttribute("message", messages.getMessage("auth.message." + result, null, locale));

@@ -165,6 +165,18 @@
             </section>
         </div>
     </div>
+    <!--REG CONFIRM-->
+    <div class="modal" id="regConfirmModal" style="display: none;">
+        <div class="modal__inner">
+            <section class="card login">
+                <h3 class="card__title" th:text="#{reg.confirm.success.title}"></h3>
+                <p class="text" th:text="#{reg.confirm.success}"></p>
+                <div class="card__body">
+                    <button class="btn" type="button" id="regConfirmBtn">Ok</button>
+                </div>
+            </section>
+        </div>
+    </div>
 
 
     <!--SERVICE-->
@@ -223,6 +235,7 @@
     </div>
 </div>
 <div id="regSucc" th:if="${registrationSuccess != null}" style="display: none;"></div>
+<div id="regConfirm" th:if="${registrationConfirm != null}" style="display: none;"></div>
 <footer class="footer">
     <div class="copyright wrapper"><a class="link" href="#">Handy team</a>, 2017</div>
 </footer>
@@ -249,11 +262,17 @@
             }, 1000);
 
         });
-        $( "#regSuccBtn" ).click(function() {
+        $("#regSuccBtn").click(function () {
             $("#regSuccessModal").fadeOut();
         });
         if (document.getElementById('regSucc') != null) {
             modalClick('regSuccessModal');
+        }
+        $("#regConfirmBtn").click(function () {
+            $("#regConfirmModal").fadeOut();
+        });
+        if (document.getElementById('regConfirm') != null) {
+            modalClick('regConfirmModal');
         }
         if (document.getElementById('registrationEmailError') != null) {
             modalClick('registrationModal');
