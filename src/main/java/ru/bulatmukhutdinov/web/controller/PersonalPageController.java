@@ -1,6 +1,8 @@
 package ru.bulatmukhutdinov.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -42,8 +44,7 @@ public class PersonalPageController {
     }
 
     @RequestMapping(value = "/personal", method = RequestMethod.POST)
-    public String handleFileUpload(MultipartHttpServletRequest request,
-                                   final Model model) {
+    public ResponseEntity handleFileUpload(MultipartHttpServletRequest request) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Account account = (Account) auth.getPrincipal();
@@ -56,7 +57,23 @@ public class PersonalPageController {
             accountService.saveRegisteredAccount(account);
         }
 
-        return getPersonal(model);
+        return new ResponseEntity<>("{}", HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/personal/userPic", method = RequestMethod.POST)
+    public ResponseEntity handleUserPicUpload(MultipartHttpServletRequest request) {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Account account = (Account) auth.getPrincipal();
+
+        Iterator<String> itr = request.getFileNames();
+
+        while (itr.hasNext()) {
+            account.setUserPicUri(storageService.store(request.getFile(itr.next())));
+            accountService.saveRegisteredAccount(account);
+        }
+
+        return new ResponseEntity<>("{}", HttpStatus.OK);
     }
 
 }

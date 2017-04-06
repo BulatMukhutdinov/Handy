@@ -1,4 +1,5 @@
-<html class="page" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html class="page" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
@@ -12,28 +13,6 @@
     <div class="wrapper">
         <a class="logo" href="/"></a>
         <h1 class="company">Handy</h1>
-
-        <nav class="header__nav">
-            <!--<a class="link" href="?lang=en" th:text="#{label.form.loginEnglish}"></a>-->
-            <!--<a class="link" href="?lang=ru" th:text="#{label.form.loginRussian}"></a>-->
-            <a class="link" th:text="#{nav.about}" th:href="@{/admin}"></a>
-            <span sec:authorize="isAuthenticated()">
-                    <a class="link" th:text="#{label.pages.logout}" th:href="@{/logout}"></a>
-            </span>
-            <span sec:authorize="isAnonymous()">
-                    <a href="#" class="link" id="loginLink" th:text="#{nav.login}"></a>
-            </span>
-            <span sec:authorize="isAnonymous()">
-                   <a href="#" class="link" id="registrationLink" th:text="#{nav.registration}"></a>
-            </span>
-        </nav>
-
-        <form class="form form_type_search search">
-                <span class="input-control">
-                    <label class="search__toggler" for="search"><i class="material-icons">search</i></label>
-                    <input id="search" class="input search__input" placeholder="Чем могу помочь?"/>
-                </span>
-        </form>
     </div>
 </header>
 
@@ -82,15 +61,19 @@
                     <div class="wizard__group">
                         <span class="control-group">
                             <label class="label">Дата рождения</label>
-                            <input class="input" type="date" name="date" placeholder="13.01.1994"/>
+                            <input class="input" type="text" data-validation="date" data-validation-format="dd/mm/yyyy"
+                                   name="date" placeholder="13.01.1994" data-validation="required"/>
                         </span>
                         <span class="control-group">
                             <label class="label">Лет опыта</label>
-                            <input class="input" type="number" name="experience" placeholder="10"/>
+                            <input class="input" type="text" data-validation="number"
+                                   data-validation-allowing="range[1;100]" name="experience" placeholder="10"
+                                   data-validation="required"/>
                         </span>
                         <span class="control-group">
                             <label class="label">Местоположение</label>
-                            <input class="input" name="address" type="text" placeholder="Иннополис"/>
+                            <input class="input" name="address" type="text" placeholder="Иннополис"
+                                   data-validation="required"/>
                         </span>
                     </div>
                     <span class="control-group" id="serviceInfo">
@@ -105,19 +88,21 @@
                             <span class="control-group">
                                     <label class="label">Описание услуги</label>
                                     <input class="input" type="text" name="service"
-                                           placeholder="Например ремонт бытовой техники"/>
+                                           placeholder="Например ремонт бытовой техники" data-validation="required"/>
                             </span>
                             <div class="service-group">
                                 <span class="control-group">
                                     <label class="label">Категория услуг</label>
                                     <select class="input" name="categorySelect">
                                         <option th:each="category: ${categories}"
-                                                th:text="${category.name}"></option>
+                                                th:text="${category.name}"
+                                                th:value="${category.id}"></option>
                                     </select>
                                 </span>
                                 <span class="control-group">
                                         <label class="label">Стоимость услуги</label>
-                                        <input class="input" type="number" name="price" placeholder="500"/>
+                                        <input class="input" type="text" data-validation="number" name="price"
+                                               placeholder="500" data-validation="required"/>
                                 </span>
                             </div>
                         </div>
@@ -133,7 +118,8 @@
                                 <span class="control-group">
                                     <label class="label">Категория услуг</label>
                                     <select class="input" name="categorySelect">
-                                        <option th:each="category: ${categories}" th:text="${category.name}"></option>
+                                        <option th:each="category: ${categories}" th:text="${category.name}"
+                                                th:value="${category.id}"></option>
                                     </select>
                                 </span>
                                 <span class="control-group">
@@ -162,6 +148,14 @@
                     <button class="btn" id="prev" type="button" style="display: none;">Назад</button>
                 </div>
             </form>
+            <div id="server__output" style="display: none;">
+                <img id="fail" class="img" src="/resources/i/icons/form_fail.png" style="display: none;">
+                <img id="success" class="img" src="/resources/i/icons/form_ok.png" style="display: none;">
+                <h2></h2>
+                <div id="messages">
+                </div>
+                <button class="btn" id="continue" type="button">Далее</button>
+            </div>
         </div>
     </section>
 </div>
@@ -175,17 +169,18 @@
 <script src="/resources/plugins/slick/slick.min.js"></script>
 <script src="/resources/js/project.js"></script>
 <script src="/resources/plugins/dropzone/dropzone.js"></script>
+<script src="/resources/plugins/h5validate/jquery.form-validator.js"></script>
 <script>
     Dropzone.autoDiscover = false;
 
     var currentSlide = 1;
 
-    var validateInput = function () {
-
-    };
-
     $(document).ready(function () {
 
+        $.validate({
+            modules: 'date',
+            lang: 'ru'
+        });
 
         $("#examples").dropzone({
             url: "/personal",
@@ -196,8 +191,8 @@
         });
 
         $("#avatar").dropzone({
-            url: "/file/post",
-            paramName: "avatar",
+            url: "/personal/userPic",
+            paramName: "file",
             uploadMultiple: false,
             dictDefaultMessage: "Перетащите фото профиля в это окно",
             addRemoveLinks: true
@@ -270,9 +265,44 @@
                     currentSlide++;
                     break;
                 case 4:
-                    $.post('/wizard', $('.form_type_wizard').serialize(), function (data) {
-                        console.log(data);
-                    }, 'json');
+                    $.post('/wizard', $('.form_type_wizard').clone()
+                            .find(".service__item__template").remove().end().serialize(),
+                        function (data) {
+                            console.log(data);
+                            if (data.message == "success") {
+                                $(".form").fadeOut();
+                                setTimeout(function () {
+                                    $("#server__output").fadeIn();
+                                    $("#success").show();
+                                    $("#server__output").find("h2").text("Вы успешно заполнили свой профиль!")
+                                }, 500);
+
+                                $("#continue").click(function (event) {
+                                    window.location = "http://localhost:8090/personal";
+                                });
+
+                            } else {
+                                $(".form").fadeOut();
+                                $("#continue").click(function (event) {
+                                    $("#fail").hide();
+                                    $("#messages").html("");
+                                    $("#server__output").find("h2").text("");
+                                    $("#server__output").fadeOut();
+                                    $(".form").fadeIn();
+                                });
+
+                                setTimeout(function () {
+                                    $("#server__output").fadeIn();
+                                    $("#fail").show();
+                                    $("#server__output").find("h2").text("Пожалуйста, исправьте следующие ошибки:");
+                                    var errors = JSON.parse(data.message);
+                                    for (var i = 0; i < errors.length; i++) {
+                                        var error = errors[i];
+                                        $("#messages").append('<div>' + error + '</div>');
+                                    }
+                                }, 500);
+                            }
+                        }, 'json');
                     break;
             }
         });

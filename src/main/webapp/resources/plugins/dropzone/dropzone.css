@@ -178,7 +178,7 @@
     border: 2px dashed rgba(12, 158, 175, 1);
     background: white;
     padding: 20px 20px;
-    border-bottom: 20px;
+    margin-bottom: 20px;
 }
 .dropzone.dz-clickable {
     cursor: pointer; }

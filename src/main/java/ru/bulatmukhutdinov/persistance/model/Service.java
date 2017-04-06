@@ -1,7 +1,6 @@
 package ru.bulatmukhutdinov.persistance.model;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "service")
@@ -13,6 +12,8 @@ public class Service {
 
     private String description;
 
+    private Integer price;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
@@ -20,7 +21,6 @@ public class Service {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "account_id")
     private Account account;
-
 
     public Long getId() {
         return id;
@@ -52,5 +52,13 @@ public class Service {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 }

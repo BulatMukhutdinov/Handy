@@ -269,3 +269,23 @@ section.card.wizard {
     right: 50%;
     margin-right: 20px;
 }
+
+#server__output img {
+    width: 40px;
+    margin: 0 auto;
+    display: block;
+}
+
+#server__output h2 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#server__output #messages {
+    margin-top: 20px;
+}
+
+#server__output button {
+    display: block;
+    margin: 0 auto;
+}

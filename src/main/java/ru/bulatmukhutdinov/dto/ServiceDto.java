@@ -9,6 +9,8 @@ public class ServiceDto {
 
     private String category;
 
+    private Integer price;
+
     public ServiceDto() {
     }
 
@@ -35,5 +37,13 @@ public class ServiceDto {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 }

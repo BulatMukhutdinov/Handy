@@ -6,6 +6,16 @@ package ru.bulatmukhutdinov.dto;
 public class CategoryDto {
     private String name;
 
+    private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public CategoryDto(String name) {
         this.name = name;
     }
@@ -25,11 +35,14 @@ public class CategoryDto {
 
         CategoryDto that = (CategoryDto) o;
 
-        return name.equals(that.name);
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        return id != null ? id.equals(that.id) : that.id == null;
     }
 
     @Override
     public int hashCode() {
-        return name.hashCode();
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (id != null ? id.hashCode() : 0);
+        return result;
     }
 }

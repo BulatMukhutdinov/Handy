@@ -30,7 +30,7 @@
         <section class="card profile">
             <header class="profile__header">
                 <div class="profile__photo">
-                    <img class="img" th:src="@{'/resources/i/' + ${account.userPicUri}}"></img>
+                    <img class="img" th:src="@{'/resources/i/photos/' + ${account.userPicUri}}"></img>
                 </div>
                 <h3 class="profile__name" th:text="${account.firstName} + ' ' + ${account.lastName}"></h3>
             </header>
