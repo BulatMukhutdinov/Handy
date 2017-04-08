@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import ru.bulatmukhutdinov.dto.AccountDto;
 import ru.bulatmukhutdinov.dto.CategoryDto;
 import ru.bulatmukhutdinov.persistance.model.*;
@@ -23,6 +24,7 @@ import ru.bulatmukhutdinov.service.CategoryService;
 import ru.bulatmukhutdinov.service.CategoryTextService;
 import ru.bulatmukhutdinov.service.LangService;
 import ru.bulatmukhutdinov.web.error.AccountAlreadyExistException;
+import ru.bulatmukhutdinov.web.util.GenericResponse;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
@@ -104,6 +106,33 @@ public class HomeController {
         model.addAttribute("expired", "expired".equals(result));
         model.addAttribute("token", token);
         return "redirect:/badUser.html?lang=" + locale.getLanguage();
+    }
+
+    @RequestMapping(value = "/fastOrder", method = RequestMethod.POST)
+    @ResponseBody
+    public GenericResponse fastOrder(@RequestParam("name") String name, @RequestParam("date") String date,
+                                     @RequestParam("time") String time, @RequestParam("phone") String phone,
+                                     @RequestParam("address") String address,
+                                     @RequestParam(value = "email", required = false) String email,
+                                     @RequestParam(value = "wishes", required = false) String wishes) {
+
+        final String subject = "Заявка с севриса Handy";
+        String message = "Доброго времени суток! Вам была оставлена заявка на сервисе Handy." +
+                "\nИмя: " + name +
+                "\nДата: " + date +
+                "\nВремя: " + time +
+                "\nТелефон: " + phone +
+                "\nАдрес: " + address;
+        if (wishes != null) {
+            message += "\nПожелания: " + wishes;
+        }
+        final SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setTo(email);
+        simpleMailMessage.setSubject(subject);
+        simpleMailMessage.setText(message);
+        simpleMailMessage.setFrom(env.getProperty("support.email"));
+        mailSender.send(simpleMailMessage);
+        return new GenericResponse("success");
     }
 
     @RequestMapping(value = "/home", method = RequestMethod.POST)

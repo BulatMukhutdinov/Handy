@@ -61,6 +61,7 @@
                     </div>
                     <div class="card__userpic__plhldr" th:if="${service.account.userPicUri == null}"></div>
                     <div class="card__description" th:text="${service.description}"></div>
+                    <p class="card__email" th:text="${service.account.email}" style="display: none"></p>
                     <footer class="card__footer">
 
                         <button class="btn" type="button" th:text="#{label.order}"></button>
@@ -185,7 +186,7 @@
     </div>
 
 
-    <!--SERVICE-->
+    <!--FAST ORDER-->
     <div class="modal" id="serviceModal" style="display: none;">
         <div class="modal__inner">
             <section class="card service">
@@ -203,7 +204,7 @@
                     </div>
                 </div>
                 <div class="card__body">
-                    <form class="form form_type_booking clearfix" action="#" method="post">
+                    <form class="form form_type_booking clearfix" method="post">
                         <span class="control-group">
                             <label class="label">Ваше имя</label>
                             <input class="input" type="text" name="name" placeholder="Иван"/>
@@ -226,12 +227,12 @@
                         </span>
                         <span class="control-group">
                             <label class="label">Ваши пожелания</label>
-                            <textarea class="input" name="comments"
+                            <textarea class="input" name="wishes"
                                       placeholder="Привет! Было бы здорово, если…"></textarea>
                         </span>
 
                         <div class="form__actions">
-                            <button id="serviceSendForm" type="submit">Отправить заявку</button>
+                            <button id="fastOrder" type="button">Отправить заявку</button>
                             <button class="btn" id="aboutService" type="button">Подробнее об услуге</button>
                         </div>
                     </form>
@@ -240,6 +241,7 @@
         </div>
     </div>
 </div>
+
 <div id="regSucc" th:if="${registrationSuccess != null}" style="display: none;"></div>
 <div id="regConfirm" th:if="${registrationConfirm != null}" style="display: none;"></div>
 <footer class="footer">
@@ -251,6 +253,8 @@
 <script src="/resources/plugins/slick/slick.min.js"></script>
 <script src="/resources/js/project.js"></script>
 <script>
+
+    var selectedEmail;
 
     $(document).ready(function () {
         $("#loginLink").click(function () {
@@ -291,6 +295,7 @@
             var titleContainer = $(this).parent().parent().find(".card__title");
             var firstName = titleContainer.children().eq(0).text();
             var lastName = titleContainer.children().eq(1).text();
+            selectedEmail = $(this).parent().parent().find(".card__email").text();
             var service = $(this).parent().parent().find(".card__description").text();
 
             console.log(firstName + lastName + service);
@@ -323,6 +328,16 @@
         $(".modal").click(function () {
             console.log("Clicked!");
         });
+
+        $("#fastOrder").click(function() {
+
+            var data = $('.form_type_booking').serializeArray();
+            data.push({name: 'email', value: selectedEmail});
+
+            $.post('/fastOrder', data,
+                function (response) {
+                }, 'json');
+        })
     });
     function modalClick(name) {
         $("#" + name).fadeIn();
