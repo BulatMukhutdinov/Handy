@@ -38,6 +38,9 @@ public class PersonalPageController {
     public String getPersonal(final Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Account account = (Account) auth.getPrincipal();
+        if (!account.getWizardVisited()) {
+            return "redirect:/wizard";
+        }
         AccountDto accountDto = new AccountDto(account);
         model.addAttribute("account", accountDto);
         return "personalPage";

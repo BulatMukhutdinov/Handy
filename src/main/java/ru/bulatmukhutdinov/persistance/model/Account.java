@@ -45,6 +45,8 @@ public class Account {
 
     private String city;
 
+    private Boolean isWizardVisited;
+
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Service> services;
 
@@ -59,6 +61,15 @@ public class Account {
     public Account() {
         super();
         this.enabled = false;
+        this.isWizardVisited = false;
+    }
+
+    public Boolean getWizardVisited() {
+        return isWizardVisited;
+    }
+
+    public void setWizardVisited(Boolean wizardVisited) {
+        isWizardVisited = wizardVisited;
     }
 
     public Set<Photo> getPhotos() {

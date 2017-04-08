@@ -163,7 +163,7 @@ public class WizardController {
                 service.setAccount(account);
                 serviceService.save(service);
             }
-
+            account.setWizardVisited(true);
             accountService.saveRegisteredAccount(account);
 
             return new GenericResponse("success");
