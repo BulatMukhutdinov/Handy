@@ -1,4 +1,4 @@
-<html class="page" xmlns:th="http://www.w3.org/1999/xhtml">
+<html class="page" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <title>Handy</title>
     <meta charset="UTF-8"/>
@@ -13,9 +13,16 @@
 
         <nav class="header__nav">
             <a class="link" th:text="#{nav.about}" th:href="@{/admin}"></a>
-            <a class="link" th:text="#{label.pages.logout}" th:href="@{/logout}"></a>
+            <span sec:authorize="isAuthenticated()">
+                    <a class="link" th:text="#{label.pages.logout}" th:href="@{/logout}"></a>
+            </span>
+            <span sec:authorize="isAnonymous()">
+                    <a href="#" class="link" id="loginLink" th:text="#{nav.login}"></a>
+            </span>
+            <span sec:authorize="isAnonymous()">
+                   <a href="#" class="link" id="registrationLink" th:text="#{nav.registration}"></a>
+            </span>
         </nav>
-
     </div>
 </header>
 
@@ -73,51 +80,8 @@
         <section class="card">
             <h3 class="card__title">Услуги</h3>
             <div class="card__description">
-                <ul class="service-list">
-                    <li class="service-list__item">
-                        <span class="service-list__name">Уборка 1 –</span>
-                        <span class="service-list__price">2500р</span>
-                    </li>
-                    <li class="service-list__item">
-                        <span class="service-list__name">Уборка 2 –</span>
-                        <span class="service-list__price">2500р</span>
-                    </li>
-                    <li class="service-list__item">
-                        <span class="service-list__name">Уборка 3 –</span>
-                        <span class="service-list__price">2500р</span>
-                    </li>
-                    <li class="service-list__item">
-                        <span class="service-list__name">Уборка 4 –</span>
-                        <span class="service-list__price">2500р</span>
-                    </li>
-                </ul>
-            </div>
-        </section>
 
-        <section class="card">
-            <h3 class="card__title">Примеры работ</h3>
-            <div class="card__description">
-                <div class="slider slider_type_examples">
-                    <div class="slider__item" th:each="photo: ${account.photos}">
-                        <div class="photo">
-                            <img class="img"
-                                 th:src="@{'/resources/i/photos/' + ${photo}}"></img>
-                        </div>
-                    </div>
-                </div>
             </div>
-            <form method="POST" enctype="multipart/form-data" action="/personal">
-                <table>
-                    <tr>
-                        <td>File to upload:</td>
-                        <td><input type="file" name="file"/></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><input type="submit" value="Upload"/></td>
-                    </tr>
-                </table>
-            </form>
         </section>
 
         <section class="card">

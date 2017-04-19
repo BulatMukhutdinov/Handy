@@ -57,6 +57,8 @@ public class AccountDto {
 
     private String city;
 
+    private long id;
+
     public AccountDto(String firstName, String lastName, String password, String email, String phone) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -69,6 +71,7 @@ public class AccountDto {
     }
 
     public AccountDto(Account account) {
+        this.id = account.getId();
         this.firstName = account.getFirstName();
         this.lastName = account.getLastName();
         this.email = account.getEmail();
@@ -88,6 +91,14 @@ public class AccountDto {
         for (Photo photo : account.getPhotos()) {
             this.photos.add(photo.getPath());
         }
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public List<String> getPhotos() {

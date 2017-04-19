@@ -52,11 +52,12 @@
 
             <div class="slider__item" th:each="service: ${category.value}">
                 <section class="card card_style_1">
-                    <h3 class="card__title">
-                        <p th:if="${service.account.firstName != null}" th:text="${service.account.firstName}"></p>
-                        <p th:if="${service.account.lastName != null}" th:text="${service.account.lastName}"></p>
-                    </h3>
-
+                    <a th:href="@{/contractor?id=} + ${service.account.id}">
+                        <h3 class="card__title">
+                            <p th:if="${service.account.firstName != null}" th:text="${service.account.firstName}"></p>
+                            <p th:if="${service.account.lastName != null}" th:text="${service.account.lastName}"></p>
+                        </h3>
+                    </a>
                     <div th:if="${service.account.userPicUri != null}">
                         <img class="card__userpic" th:src="@{'/resources/i/' + ${service.account.userPicUri}}"></img>
                     </div>
