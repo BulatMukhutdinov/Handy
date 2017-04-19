@@ -146,22 +146,24 @@ public class HomeController {
         return new GenericResponse("success");
     }
 
+
     @RequestMapping(value = "/search", method = RequestMethod.POST)
-    public String search(@RequestParam(value = "search") String search, Locale locale, Model model) {
+    @ResponseBody
+    public GenericResponse search(@RequestParam(value = "search") String search, Locale locale, Model model) {
         if (search.isEmpty()) {
             foundServices = null;
-            return getHome(locale, model);
-        }
-        List<Service> services = serviceService.findAll();
-        foundServices = new ArrayList<>();
-        for (Service service : services) {
-            if (service.getAccount().getFirstName().contains(search)
-                    || service.getAccount().getLastName().contains(search)
-                    || service.getDescription().contains(search)) {
-                foundServices.add(service);
+        } else {
+            List<Service> services = serviceService.findAll();
+            foundServices = new ArrayList<>();
+            for (Service service : services) {
+                if ((service.getAccount().getFirstName() != null && service.getAccount().getFirstName().contains(search))
+                        || (service.getAccount().getLastName() != null && service.getAccount().getLastName().contains(search))
+                        || service.getDescription().contains(search)) {
+                    foundServices.add(service);
+                }
             }
         }
-        return getHome(locale, model);
+        return new GenericResponse("success");
     }
 
 

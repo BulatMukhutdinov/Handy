@@ -28,7 +28,7 @@
         <form class="form form_type_search search" method="post">
                 <span class="input-control">
                     <label class="search__toggler" for="search"><i class="material-icons">search</i></label>
-                    <input id="search"  class="input search__input" placeholder="Чем могу помочь?"/>
+                    <input id="search" class="input search__input" placeholder="Чем могу помочь?"/>
                 </span>
         </form>
 
@@ -340,6 +340,9 @@
                 data.push({name: 'search', value: $('#search').val()});
                 $.post('/search', data,
                     function (response) {
+                        if (response.message == "success") {
+                            window.location = "http://localhost:8090/home";
+                        }
                     }, 'json');
             }
         });
