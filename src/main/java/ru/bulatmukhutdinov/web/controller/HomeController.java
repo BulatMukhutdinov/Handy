@@ -77,16 +77,6 @@ public class HomeController {
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String getHome(Locale locale, final Model model) {
         List<Category> categories = new ArrayList<>();
-        if (foundServices == null) {
-            categories = categoryService.findAll();
-        } else {
-            for (Service service : foundServices) {
-                if (!categories.contains(service.getCategory())) {
-                    categories.add(service.getCategory());
-                }
-            }
-            foundServices = null;
-        }
         Map<CategoryDto, Set<Service>> categoryDtoListMap = new HashMap<>();
         Lang language = null;
         List<Lang> langList = langService.getLangs();
@@ -96,11 +86,28 @@ public class HomeController {
                 break;
             }
         }
-        for (Category category : categories) {
-            if (!category.getServices().isEmpty()) {
-                categoryDtoListMap.put(new CategoryDto(categoryTextService.findByLang(category, language).getText()), category.getServices());
+        if (foundServices == null) {
+            categories = categoryService.findAll();
+            for (Category category : categories) {
+                if (!category.getServices().isEmpty()) {
+                    categoryDtoListMap.put(new CategoryDto(categoryTextService.findByLang(category, language).getText()), category.getServices());
+                }
             }
+        } else {
+            Set<Service> services;
+            for (Service service : foundServices) {
+                CategoryDto categoryDto = new CategoryDto(categoryTextService.findByLang(service.getCategory(), language).getText());
+                services = new HashSet<>();
+                services.add(service);
+                if (categoryDtoListMap.containsKey(categoryDto)) {
+                    services.addAll(categoryDtoListMap.get(categoryDto));
+                }
+                categoryDtoListMap.put(new CategoryDto(categoryTextService.findByLang(service.getCategory(), language).getText()), services);
+            }
+            foundServices = null;
         }
+
+
         model.addAttribute("categoryServices", categoryDtoListMap);
         return "home";
     }
