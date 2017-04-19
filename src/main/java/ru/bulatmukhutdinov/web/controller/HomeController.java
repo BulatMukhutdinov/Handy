@@ -19,10 +19,7 @@ import ru.bulatmukhutdinov.dto.AccountDto;
 import ru.bulatmukhutdinov.dto.CategoryDto;
 import ru.bulatmukhutdinov.persistance.model.*;
 import ru.bulatmukhutdinov.registration.OnRegistrationCompleteEvent;
-import ru.bulatmukhutdinov.service.AccountService;
-import ru.bulatmukhutdinov.service.CategoryService;
-import ru.bulatmukhutdinov.service.CategoryTextService;
-import ru.bulatmukhutdinov.service.LangService;
+import ru.bulatmukhutdinov.service.*;
 import ru.bulatmukhutdinov.web.error.AccountAlreadyExistException;
 import ru.bulatmukhutdinov.web.util.GenericResponse;
 
@@ -67,6 +64,11 @@ public class HomeController {
     @Autowired
     private CategoryService categoryService;
 
+    @Autowired
+    private ServiceService serviceService;
+
+    private List<Service> foundServices;
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getDefault() {
         return "redirect:/home";
@@ -74,17 +76,26 @@ public class HomeController {
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String getHome(Locale locale, final Model model) {
-        List<Category> categories = categoryService.findAll();
+        List<Category> categories = new ArrayList<>();
+        if (foundServices == null) {
+            categories = categoryService.findAll();
+        } else {
+            for (Service service : foundServices) {
+                if (!categories.contains(service.getCategory())) {
+                    categories.add(service.getCategory());
+                }
+            }
+            foundServices = null;
+        }
         Map<CategoryDto, Set<Service>> categoryDtoListMap = new HashMap<>();
-        List<Lang> langList = langService.getLangs();
         Lang language = null;
+        List<Lang> langList = langService.getLangs();
         for (Lang lang : langList) {
             if (locale.getLanguage().equals(lang.getName())) {
                 language = lang;
                 break;
             }
         }
-
         for (Category category : categories) {
             if (!category.getServices().isEmpty()) {
                 categoryDtoListMap.put(new CategoryDto(categoryTextService.findByLang(category, language).getText()), category.getServices());
@@ -134,6 +145,25 @@ public class HomeController {
         mailSender.send(simpleMailMessage);
         return new GenericResponse("success");
     }
+
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    public String search(@RequestParam(value = "search") String search, Locale locale, Model model) {
+        if (search.isEmpty()) {
+            foundServices = null;
+            return getHome(locale, model);
+        }
+        List<Service> services = serviceService.findAll();
+        foundServices = new ArrayList<>();
+        for (Service service : services) {
+            if (service.getAccount().getFirstName().contains(search)
+                    || service.getAccount().getLastName().contains(search)
+                    || service.getDescription().contains(search)) {
+                foundServices.add(service);
+            }
+        }
+        return getHome(locale, model);
+    }
+
 
     @RequestMapping(value = "/home", method = RequestMethod.POST)
     public String signUp(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName,

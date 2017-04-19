@@ -2,11 +2,15 @@ package ru.bulatmukhutdinov.service;
 
 import ru.bulatmukhutdinov.persistance.model.Service;
 
+import java.util.List;
+
 /**
  * Created by neewy on 06/04/17.
  */
 public interface ServiceService {
 
-    public void save(Service service);
+    List<Service> findAll();
+
+    void save(Service service);
 
 }

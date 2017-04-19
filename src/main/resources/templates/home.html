@@ -25,12 +25,13 @@
             </span>
         </nav>
 
-        <form class="form form_type_search search">
+        <form class="form form_type_search search" method="post">
                 <span class="input-control">
                     <label class="search__toggler" for="search"><i class="material-icons">search</i></label>
-                    <input id="search" class="input search__input" placeholder="Чем могу помочь?"/>
+                    <input id="search"  class="input search__input" placeholder="Чем могу помочь?"/>
                 </span>
         </form>
+
     </div>
 </header>
 
@@ -298,7 +299,6 @@
             selectedEmail = $(this).parent().parent().find(".card__email").text();
             var service = $(this).parent().parent().find(".card__description").text();
 
-            console.log(firstName + lastName + service);
 
             $("#personalInfo").find("h2").text(firstName + " " + lastName);
             $("#personalInfo").find("p").text(service);
@@ -325,11 +325,7 @@
         }
 
 
-        $(".modal").click(function () {
-            console.log("Clicked!");
-        });
-
-        $("#fastOrder").click(function() {
+        $("#fastOrder").click(function () {
 
             var data = $('.form_type_booking').serializeArray();
             data.push({name: 'email', value: selectedEmail});
@@ -337,7 +333,16 @@
             $.post('/fastOrder', data,
                 function (response) {
                 }, 'json');
-        })
+        });
+        $('#search').keydown(function (e) {
+            if (e.keyCode == 13) {
+                var data = [];
+                data.push({name: 'search', value: $('#search').val()});
+                $.post('/search', data,
+                    function (response) {
+                    }, 'json');
+            }
+        });
     });
     function modalClick(name) {
         $("#" + name).fadeIn();

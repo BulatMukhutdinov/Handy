@@ -5,6 +5,7 @@ import ru.bulatmukhutdinov.persistance.dao.ServiceRepository;
 import ru.bulatmukhutdinov.persistance.model.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 /**
  * Created by neewy on 06/04/17.
@@ -15,6 +16,11 @@ public class ServiceServiceImpl implements ServiceService {
 
     @Autowired
     private ServiceRepository serviceRepository;
+
+    @Override
+    public List<Service> findAll() {
+        return serviceRepository.findAll();
+    }
 
     @Override
     public void save(Service service) {
