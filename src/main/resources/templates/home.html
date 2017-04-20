@@ -13,7 +13,9 @@
         <nav class="header__nav">
             <!--<a class="link" href="?lang=en" th:text="#{label.form.loginEnglish}"></a>-->
             <!--<a class="link" href="?lang=ru" th:text="#{label.form.loginRussian}"></a>-->
-            <a class="link" th:text="#{nav.about}" th:href="@{/admin}"></a>
+            <span sec:authorize="isAuthenticated()">
+                <a class="link" th:text="#{nav.personal}" th:href="@{/personal}"></a>
+            </span>
             <span sec:authorize="isAuthenticated()">
                     <a class="link" th:text="#{label.pages.logout}" th:href="@{/logout}"></a>
             </span>
@@ -234,7 +236,7 @@
                         </span>
 
                         <div class="form__actions">
-                            <button id="fastOrder" type="button">Отправить заявку</button>
+                            <button id="fastOrder" class="btn" type="button">Отправить заявку</button>
                             <button class="btn" id="aboutService" type="button">Подробнее об услуге</button>
                         </div>
                     </form>
@@ -333,6 +335,10 @@
 
             $.post('/fastOrder', data,
                 function (response) {
+                    $("#serviceModal").find(".card__body").html("<h1>Ваша заявка отправлена</h1>");
+                    setTimeout(function () {
+                        window.location = "http://handy.nyushkevich.ru:8090/";
+                    }, 1500);
                 }, 'json');
         });
         $('#search').keydown(function (e) {
