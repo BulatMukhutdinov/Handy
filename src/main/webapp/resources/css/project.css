@@ -885,3 +885,80 @@ input:-ms-input-placeholder
 {
     padding: 10px 0 20px;
 }
+
+form_type_edit
+{
+
+}
+
+.textarea
+{
+    font: 14px/30px 'FGB', Arial, sans-serif;
+
+    width: 100%;
+    padding: 0 10px;
+
+    resize: vertical;
+    color: #4d4d4d;
+    border: 1px solid transparent;
+    outline: none;
+    background: #fdfdfd;
+    box-shadow: 1px 1px 0 rgba(0, 0, 0, .1);
+}
+
+.form_type_edit .textarea
+{
+    margin: 0 0 12px;
+    border: 1px solid rgba(0, 0, 0, .1);
+    box-shadow: none;
+}
+
+.form_type_edit .control-group
+{
+
+}
+
+.form_type_edit .input,
+.form_type_edit .select
+{
+    float: none;
+    display: inline-block;
+    width: auto;
+    border: 1px solid rgba(0, 0, 0, .1);
+    box-shadow: none;
+}
+
+.form_type_edit .service-group
+{
+    min-height: 0;
+    margin: 0 0 10px;
+}
+
+.form_type_edit .service-group .input:first-child
+{
+    width: 30%;
+}
+
+.form_type_edit .service-group .input
+{
+    width: 100px;
+}
+
+.form_type_edit .service-group .btn-del
+{
+    vertical-align: middle;
+    margin: -3px 0 0;
+    color: #d31478;
+}
+
+.btn-add,
+.btn-add .material-icons
+{
+    color: #0c9eaf !important;
+    background: none !important;
+}
+
+.card__title .btn-add .material-icons
+{
+    color: #0c9eaf !important;
+}
