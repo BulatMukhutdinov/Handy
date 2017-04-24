@@ -846,7 +846,7 @@ input:-ms-input-placeholder
 /* End Slider */
 .modal
 {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
@@ -856,7 +856,7 @@ input:-ms-input-placeholder
 
 .modal__inner
 {
-    margin: 120px 50px 50px;
+    margin: 100px 50px 50px;
 }
 
 .registration
