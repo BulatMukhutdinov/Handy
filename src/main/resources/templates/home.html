@@ -40,14 +40,14 @@
 <div class="menu">
     <ul class="menu__list">
         <li class="menu__item" th:each="category : ${categoryServices}">
-            <a class="link" th:text="${category.key.name}" href="#">
+            <a class="link" th:text="${category.key.name}" th:href="${category.key.name}">
             </a>
         </li>
     </ul>
 </div>
 
 <div class="content wrapper">
-    <section class="section section_size_1" th:each="category: ${categoryServices}">
+    <section class="section section_size_1" th:id="${category.key.name}" th:each="category: ${categoryServices}">
         <h2 class="title" th:text="${category.key.name}"></h2>
 
         <div class="slider">
