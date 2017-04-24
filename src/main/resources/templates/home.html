@@ -40,8 +40,7 @@
 <div class="menu">
     <ul class="menu__list">
         <li class="menu__item" th:each="category : ${categoryServices}">
-            <a class="link" th:text="${category.key.name}" th:href="${category.key.name}">
-            </a>
+            <a class="link" th:text="${category.key.name}" href="#"></a>
         </li>
     </ul>
 </div>
@@ -54,12 +53,12 @@
 
             <div class="slider__item" th:each="service: ${category.value}">
                 <section class="card card_style_1">
-                    <a th:href="@{/contractor?id=} + ${service.account.id}">
-                        <h3 class="card__title">
-                            <p th:if="${service.account.firstName != null}" th:text="${service.account.firstName}"></p>
-                            <p th:if="${service.account.lastName != null}" th:text="${service.account.lastName}"></p>
-                        </h3>
-                    </a>
+                    <h3 class="card__title">
+                        <a class="link" th:href="@{/contractor?id=} + ${service.account.id}">
+                            <span th:if="${service.account.firstName != null}" th:text="${service.account.firstName}"></span>
+                            <span th:if="${service.account.lastName != null}" th:text="${service.account.lastName}"></span>
+                        </a>
+                    </h3>
                     <div th:if="${service.account.userPicUri != null}">
                         <img class="card__userpic" th:src="@{'/resources/i/' + ${service.account.userPicUri}}"></img>
                     </div>
@@ -368,6 +367,14 @@
             });
         }, 1000);
     }
+
+    $('.menu .link').click(function(){
+        var id = $(this).text();
+        $('html, body').animate({
+            scrollTop: $('#'+id).offset().top
+        }, 2000);
+    });
+
     /*<![CDATA[*/
     function getParameterByName(name, url) {
         if (!url) {
