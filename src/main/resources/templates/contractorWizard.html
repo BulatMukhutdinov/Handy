@@ -78,7 +78,8 @@
                     </div>
                     <span class="control-group" id="serviceInfo">
                             <label class="label">Расскажите о себе и своей работе</label>
-                            <textarea class="input" name="about"
+                            <input type="hidden" name="about">
+                            <textarea class="input" name="aboutTextarea"
                                       placeholder="Помешана на уборке — имею высшее уборческое образование, родилась со шваброй в руках. Обожаю запах чистоты и влажные тряпки. Есть собственный транспорт. Аллергик. Замужем за мистером Пропером"></textarea>
                     </span>
                 </div>
@@ -244,6 +245,8 @@
                     }, 500);
                     $("#step1Indicator").addClass("step-done").addClass("active-step");
                     $("#step2Indicator").addClass("active-step");
+                    var about = $("input[name='aboutTextarea']").val();
+                    $("input[name='about']").val(about);
                     currentSlide++;
                     break;
                 case 2:
