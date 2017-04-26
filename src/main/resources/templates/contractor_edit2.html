@@ -104,48 +104,50 @@
         </section>
 
         <section class="card">
-            <h3 class="card__title">Услуги <span class="btn btn-add"><i class="material-icons">add</i>Добавить</span></h3>
+            <h3 class="card__title">Услуги <span class="btn btn-add btn-add_action_service"><i class="material-icons">add</i>Добавить</span></h3>
             <div class="card__description">
                 <form class="form form_type_edit">
-                    <div class="control-group service-group">
-                        <input class="input" type="text" placeholder="Название услуги">
-                        <select class="select">
-                            <option class="select__option">1</option>
-                            <option class="select__option">2</option>
-                            <option class="select__option">3</option>
-                        </select>
-                        <input class="input" type="text" placeholder="Цена">
-                        <i class="material-icons btn-del">close</i>
-                    </div>
-                    <div class="control-group service-group">
-                        <input class="input" type="text" placeholder="Название услуги">
-                        <select class="select">
-                            <option class="select__option">1</option>
-                            <option class="select__option">2</option>
-                            <option class="select__option">3</option>
-                        </select>
-                        <input class="input" type="text" placeholder="Цена">
-                        <i class="material-icons btn-del">close</i>
-                    </div>
-                    <div class="control-group service-group">
-                        <input class="input" type="text" placeholder="Название услуги">
-                        <select class="select">
-                            <option class="select__option">1</option>
-                            <option class="select__option">2</option>
-                            <option class="select__option">3</option>
-                        </select>
-                        <input class="input" type="text" placeholder="Цена">
-                        <i class="material-icons btn-del">close</i>
-                    </div>
-                    <div class="control-group service-group">
-                        <input class="input" type="text" placeholder="Название услуги">
-                        <select class="select">
-                            <option class="select__option">1</option>
-                            <option class="select__option">2</option>
-                            <option class="select__option">3</option>
-                        </select>
-                        <input class="input" type="text" placeholder="Цена">
-                        <i class="material-icons btn-del">close</i>
+                    <div class="form__inner">
+                        <div class="control-group service-group">
+                            <input class="input" type="text" placeholder="Название услуги">
+                            <select class="select">
+                                <option class="select__option">1</option>
+                                <option class="select__option">2</option>
+                                <option class="select__option">3</option>
+                            </select>
+                            <input class="input" type="text" placeholder="Цена">
+                            <i class="material-icons btn-del">close</i>
+                        </div>
+                        <div class="control-group service-group">
+                            <input class="input" type="text" placeholder="Название услуги">
+                            <select class="select">
+                                <option class="select__option">1</option>
+                                <option class="select__option">2</option>
+                                <option class="select__option">3</option>
+                            </select>
+                            <input class="input" type="text" placeholder="Цена">
+                            <i class="material-icons btn-del">close</i>
+                        </div>
+                        <div class="control-group service-group">
+                            <input class="input" type="text" placeholder="Название услуги">
+                            <select class="select">
+                                <option class="select__option">1</option>
+                                <option class="select__option">2</option>
+                                <option class="select__option">3</option>
+                            </select>
+                            <input class="input" type="text" placeholder="Цена">
+                            <i class="material-icons btn-del">close</i>
+                        </div>
+                        <div class="control-group service-group">
+                            <input class="input" type="text" placeholder="Название услуги">
+                            <select class="select">
+                                <option class="select__option">1</option>
+                                <option class="select__option">2</option>
+                                <option class="select__option">3</option>
+                            </select>
+                            <input class="input" type="text" placeholder="Цена">
+                            <i class="material-icons btn-del">close</i>
+                        </div>
                     </div>
                     <button class="btn btn-edit">Сохранить</button>
                 </form>
@@ -197,6 +199,29 @@
 <script src="/resources/plugins/select/jquery.nice-select.min.js"></script>
 <script src="/resources/plugins/slick/slick.min.js"></script>
 <script src="/resources/js/project.js"></script>
+
+<script type="text/javascript">
+    function removeServiceGroup() {
+        $('.service-group .btn-del').on('click', function () {
+            $(this).parent().remove();
+        });
+    }
+
+    $('.btn-add_action_service').on('click', function() {
+        var serviceGroup =
+            '<div class="control-group service-group">' +
+            '<input class="input" type="text" placeholder="Название услуги"> ' +
+            '<select class="select"> ' +
+            '<option class="select__option">1</option>' +
+            '</select> ' +
+            '<input class="input" type="text" placeholder="Цена"> ' +
+            '<i class="material-icons btn-del">close</i>' +
+            '</div>';
+        $(this).parent().parent().find('.form__inner').append(serviceGroup);
+        $('select').niceSelect();
+        removeServiceGroup();
+    });
+</script>
 </body>
 
 </html>

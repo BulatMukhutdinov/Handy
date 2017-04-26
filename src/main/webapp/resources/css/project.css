@@ -949,6 +949,7 @@ form_type_edit
     vertical-align: middle;
     margin: -3px 0 0;
     color: #d31478;
+    cursor: pointer;
 }
 
 .btn-add,
