@@ -264,6 +264,14 @@ input:-ms-input-placeholder
     text-transform: uppercase;
 }
 
+.header__nav .material-icons
+{
+    font-size: 20px;
+    
+    vertical-align: bottom;
+    margin: 0 0 -1px 2px
+}
+
 .logo
 {
     display: inline-block;
