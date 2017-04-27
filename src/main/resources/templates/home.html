@@ -343,6 +343,7 @@
         });
         $('#search').keydown(function (e) {
             if (e.keyCode == 13) {
+//                $("html").fadeOut();
                 var data = [];
                 data.push({name: 'search', value: $('#search').val()});
                 $.post('/search', data,

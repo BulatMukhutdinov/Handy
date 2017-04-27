@@ -13,4 +13,6 @@ public interface ServiceService {
 
     void save(Service service);
 
+    void delete(Service service);
+
 }

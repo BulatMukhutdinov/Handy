@@ -1,6 +1,9 @@
 package ru.bulatmukhutdinov.persistance.model;
 
-import javax.persistence.*;;import java.util.Set;
+import javax.persistence.*;
+import java.util.Set;
+
+;
 
 @Entity
 @Table(name = "lang")
@@ -12,7 +15,7 @@ public class Lang {
 
     private String name;
 
-    @OneToMany(mappedBy = "lang", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "lang", fetch = FetchType.LAZY)
     private Set<CategoryText> categoryTexts;
 
 

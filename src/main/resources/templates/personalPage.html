@@ -65,31 +65,35 @@
     <div class="main">
         <section class="card">
             <h3 class="card__title" th:text="#{personal.about}"></h3>
-            <div class="card__description" th:text="${account.description}">
+            <div class="card__description">
+                <form class="form form_type_edit" id="about_form">
+                    <textarea id="aboutText" class="textarea" th:text="${account.description}" rows="3"></textarea>
+                    <button id="aboutBtn" class="btn btn-edit" th:text="#{btn.save}"></button>
+                </form>
             </div>
         </section>
 
         <section class="card">
-            <h3 class="card__title">Услуги</h3>
+            <h3 class="card__title">Услуги <span class="btn btn-add btn-add_action_service"><i class="material-icons">add</i>Добавить</span>
+            </h3>
+            </h3>
             <div class="card__description">
-                <ul class="service-list">
-                    <li class="service-list__item">
-                        <span class="service-list__name">Уборка 1 –</span>
-                        <span class="service-list__price">2500р</span>
-                    </li>
-                    <li class="service-list__item">
-                        <span class="service-list__name">Уборка 2 –</span>
-                        <span class="service-list__price">2500р</span>
-                    </li>
-                    <li class="service-list__item">
-                        <span class="service-list__name">Уборка 3 –</span>
-                        <span class="service-list__price">2500р</span>
-                    </li>
-                    <li class="service-list__item">
-                        <span class="service-list__name">Уборка 4 –</span>
-                        <span class="service-list__price">2500р</span>
-                    </li>
-                </ul>
+                <form class="form form_type_edit" id="service_form">
+                    <div class="form__inner">
+                        <div class="control-group service-group" th:each="service: ${account.serviceDtos}">
+                            <input class="input" name="service" type="text" th:value="${service.description}">
+                            <select class="select" name="categorySelect">
+                                <option class="select__option" th:each="category : ${categories}"
+                                        th:value="${category.id}"
+                                        th:text="${category.name}">
+                                </option>
+                            </select>
+                            <input class="input" name="price" type="text" th:value="${service.price}">
+                            <i class="material-icons btn-del">close</i>
+                        </div>
+                    </div>
+                    <button id="servicesBtn" class="btn btn-edit" th:text="#{btn.save}"></button>
+                </form>
             </div>
         </section>
 
@@ -144,10 +148,10 @@
                         }
                     };
 
-                     var disqus_config = function () {
-                         this.page.url = window.location.href;  // Replace PAGE_URL with your page's canonical URL variable
-                         this.page.identifier = getUrlParameter(id); // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-                     };
+                    var disqus_config = function () {
+                        this.page.url = window.location.href;  // Replace PAGE_URL with your page's canonical URL variable
+                        this.page.identifier = getUrlParameter(id); // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                    };
 
                     (function () { // DON'T EDIT BELOW THIS LINE
                         var d = document, s = d.createElement('script');
@@ -173,6 +177,50 @@
 <script src="/resources/plugins/slick/slick.min.js"></script>
 <script src="/resources/js/project.js"></script>
 <script id="dsq-count-scr" src="//handy-nyushkevich-ru.disqus.com/count.js" async></script>
+<script>
+
+    $(document).ready(function () {
+        function removeServiceGroup() {
+            $('.service-group .btn-del').on('click', function () {
+                $(this).parent().remove();
+            });
+        }
+
+        $('.btn-add_action_service').on('click', function () {
+            var serviceGroup =
+                '<div class="control-group service-group">' +
+                '<input class="input" name="service" type="text" th:placeholder="#{service.description}">' +
+                '<select class="select" name="categorySelect">' +
+                ' <option class="select__option" th:each="category : ${categories}"' +
+                '  th:value="${category.id}"' +
+                '   th:text="${category.name}">' +
+                '     </option>' +
+                '    </select>' +
+                '    <input class="input" name="price" type="text" th:placeholder="#{service.price}">' +
+                '<i class="material-icons btn-del">close</i>' +
+                '</div>';
+            $(this).parent().parent().find('.form__inner').append(serviceGroup);
+            $('select').niceSelect();
+            removeServiceGroup();
+        });
+        $("#servicesBtn").click(function () {
+            var data = $("#service_form").serialize();
+            $.post('/updateServices', data,
+                function (response) {
+                    response.preventDefault();
+                }, 'json');
+        });
+        $("#aboutBtn").click(function () {
+            var data = [];
+            data.push({name: 'about', value: $('#aboutText').val()});
+            $.post('/updateAbout', data,
+                function (response) {
+
+                }, 'json');
+        });
+    });
+</script>
+
 </body>
 
 </html>

@@ -1,5 +1,7 @@
 package ru.bulatmukhutdinov.dto;
 
+import ru.bulatmukhutdinov.persistance.model.CategoryText;
+
 /**
  * Created by Reverendo on 16.03.2017.
  */
@@ -18,6 +20,11 @@ public class CategoryDto {
 
     public CategoryDto(String name) {
         this.name = name;
+    }
+
+    public CategoryDto(CategoryText categoryText) {
+        this.id = categoryText.getCategory().getId();
+        this.name = categoryText.getText();
     }
 
     public String getName() {

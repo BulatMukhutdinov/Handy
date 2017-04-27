@@ -1,7 +1,6 @@
 package ru.bulatmukhutdinov.persistance.model;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Set;
 
 @Entity
@@ -13,10 +12,10 @@ public class Category {
     private Long id;
 
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
     private Set<CategoryText> categoryTexts;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
     private Set<Service> services;
 
     public Long getId() {

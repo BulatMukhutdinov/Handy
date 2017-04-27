@@ -26,4 +26,9 @@ public class ServiceServiceImpl implements ServiceService {
     public void save(Service service) {
         serviceRepository.save(service);
     }
+
+    @Override
+    public void delete(Service service) {
+        serviceRepository.delete(service);
+    }
 }
