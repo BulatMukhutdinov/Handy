@@ -14,9 +14,10 @@ public class ServiceDto {
     public ServiceDto() {
     }
 
-    public ServiceDto(String description, Integer price) {
+    public ServiceDto(String description, Integer price, String category) {
         this.description = description;
         this.price = price;
+        this.category = category;
     }
 
     public ServiceDto(String description) {

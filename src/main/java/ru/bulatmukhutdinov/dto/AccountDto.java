@@ -85,7 +85,7 @@ public class AccountDto {
         this.lastWork = stringifyDate(account.getLastWork());
         this.city = account.getCity();
         for (Service service : account.getServices()) {
-            serviceDtos.add(new ServiceDto(service.getDescription(),service.getPrice()));
+            serviceDtos.add(new ServiceDto(service.getDescription(), service.getPrice(), service.getCategory().getId().toString()));
         }
         this.photos = new ArrayList<>();
         for (Photo photo : account.getPhotos()) {

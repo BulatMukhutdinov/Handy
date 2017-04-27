@@ -18,6 +18,9 @@
         <h1 class="company">Handy</h1>
 
         <nav class="header__nav">
+            <a class="link" th:if="${#locale.language == 'en'}" href="?lang=ru" th:text="${#locale}"></a>
+            <a class="link" th:if="${#locale.language == 'ru'}" href="?lang=en" th:text="${#locale}"></a>
+            <i class="material-icons">language</i>
             <a class="link" th:text="#{label.pages.logout}" th:href="@{/logout}"></a>
         </nav>
 
@@ -29,7 +32,7 @@
         <section class="card profile">
             <header class="profile__header">
                 <div class="profile__photo">
-                    <img class="img" th:src="@{'/resources/i/photos/' + ${account.userPicUri}}"></img>
+                    <img class="img" th:src="@{'/resources/i/' + ${account.userPicUri}}"></img>
                 </div>
                 <h3 class="profile__name" th:text="${account.firstName} + ' ' + ${account.lastName}"></h3>
 
@@ -94,7 +97,8 @@
                             <select class="select" name="categorySelect">
                                 <option class="select__option" th:each="category : ${categories}"
                                         th:value="${category.id}"
-                                        th:text="${category.name}">
+                                        th:text="${category.name}"
+                                        th:selected="${category.id} == ${service.category}? true : false">
                                 </option>
                             </select>
                             <input class="input" name="price" type="text" th:value="${service.price}">
