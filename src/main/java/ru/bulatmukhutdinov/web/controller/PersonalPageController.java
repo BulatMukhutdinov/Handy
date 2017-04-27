@@ -38,6 +38,9 @@ public class PersonalPageController {
     private LangService langService;
 
     @Autowired
+    PhotoService photoService;
+
+    @Autowired
     AccountService accountService;
 
     @Autowired
@@ -127,6 +130,7 @@ public class PersonalPageController {
         while (itr.hasNext()) {
             Photo photo = new Photo(storageService.store(request.getFile(itr.next())), account);
             account.getPhotos().add(photo);
+            photoService.save(photo);
             accountService.saveRegisteredAccount(account);
         }
 
