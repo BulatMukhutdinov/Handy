@@ -268,8 +268,7 @@
                     currentSlide++;
                     break;
                 case 4:
-                    $.post('/wizard', $('.form_type_wizard').clone()
-                            .find(".service__item__template").remove().end().serialize(),
+                    $.post('/wizard', $('.form_type_wizard').remove(".service__item__template").serialize(),
                         function (data) {
                             console.log(data);
                             if (data.message == "success") {

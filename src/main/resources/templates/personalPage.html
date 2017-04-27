@@ -222,15 +222,14 @@
                 .removeClass("service-template")
                 .appendTo(".form__inner").fadeIn();
 
-            $(".close").click(function () {
+            $(".btn-del").click(function () {
                 $(this).parent().fadeOut().remove();
             });
         });
 
 
         $("#servicesBtn").click(function () {
-            var data  = $('#service_form').clone()
-                .find(".service-template").remove().end().serialize();
+            var data = $("#service_form").find(".service-group:not(.service-template)").find("input, select").serialize();
             $.post('/updateServices', data,
                 function (response) {
                     response.preventDefault();
