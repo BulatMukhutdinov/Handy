@@ -77,7 +77,7 @@
             <div class="card__description">
                 <form class="form form_type_edit" id="about_form">
                     <textarea id="aboutText" class="textarea" th:text="${account.description}" rows="3"></textarea>
-                    <button id="aboutBtn" class="btn btn-edit" th:text="#{btn.save}"></button>
+                    <button id="aboutBtn" type="button" class="btn btn-edit" th:text="#{btn.save}"></button>
                 </form>
             </div>
         </section>
@@ -100,7 +100,7 @@
                             <input class="input" name="price" type="text" th:value="${service.price}">
                             <i class="material-icons btn-del">close</i>
                         </div>
-                        
+
                         <div class="control-group service-group service-template" style="display: none;">
                             <input class="input" name="service" type="text">
                             <select class="select" name="categorySelect">
@@ -112,7 +112,7 @@
                             <input class="input" name="price" type="text" >
                             <i class="material-icons btn-del">close</i>
                         </div>
-                        
+
                     </div>
                     <button id="servicesBtn" class="btn btn-edit" th:text="#{btn.save}"></button>
                 </form>

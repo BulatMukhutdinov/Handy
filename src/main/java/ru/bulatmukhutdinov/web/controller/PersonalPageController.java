@@ -77,9 +77,9 @@ public class PersonalPageController {
 
     @RequestMapping(value = "/updateServices", method = RequestMethod.POST)
     @ResponseBody
-    public GenericResponse updateServices(@RequestParam(value = "service", required = false) String[] services,
-                                          @RequestParam(value = "categorySelect", required = false) String[] categoriesSelected,
-                                          @RequestParam(value = "price", required = false) String[] prices) {
+    public void updateServices(@RequestParam(value = "service", required = false) String[] services,
+                               @RequestParam(value = "categorySelect", required = false) String[] categoriesSelected,
+                               @RequestParam(value = "price", required = false) String[] prices) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Account account = (Account) auth.getPrincipal();
@@ -103,7 +103,7 @@ public class PersonalPageController {
         }
         account.setServices(serviceSet);
         accountService.saveRegisteredAccount(account);
-        return new GenericResponse("success");
+
     }
 
     @RequestMapping(value = "/updateAbout", method = RequestMethod.POST)
