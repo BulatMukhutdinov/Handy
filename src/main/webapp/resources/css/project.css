@@ -363,6 +363,7 @@ input:-ms-input-placeholder
 
 .section
 {
+    padding: 12px 12px 8px 10px !important;
     margin: 0 0 30px;
 }
 
@@ -383,6 +384,18 @@ input:-ms-input-placeholder
     padding: 0 4px 0 0;
 }
 
+.section:nth-child(odd)
+{
+    border-left: 4px solid #0c9eaf;
+    background: #E7F2F3;
+}
+
+.section:nth-child(even)
+{
+    border-left: 4px solid #d31478;
+    background: #F3D9E7;
+}
+
 .title
 {
     font-size: 18px;
@@ -395,7 +408,7 @@ input:-ms-input-placeholder
 
 .section .title
 {
-    margin: 0 0 15px;
+    margin: 0;
 }
 
 .card
