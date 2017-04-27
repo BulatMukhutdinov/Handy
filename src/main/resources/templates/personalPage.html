@@ -3,6 +3,12 @@
     <title>Handy</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="/resources/css/project.css"/>
+    <link rel="stylesheet" href="/resources/plugins/dropzone/dropzone.css"/>
+    <style>
+        .dropzone {
+            margin-top: 30px;
+        }
+    </style>
 </head>
 
 <body class="page__body">
@@ -26,6 +32,9 @@
                     <img class="img" th:src="@{'/resources/i/photos/' + ${account.userPicUri}}"></img>
                 </div>
                 <h3 class="profile__name" th:text="${account.firstName} + ' ' + ${account.lastName}"></h3>
+
+                <div class="dropzone" id="avatar">
+                </div>
             </header>
 
             <div class="profile__body">
@@ -122,18 +131,8 @@
                     </div>
                 </div>
             </div>
-            <form method="POST" enctype="multipart/form-data" action="/personal">
-                <table>
-                    <tr>
-                        <td>File to upload:</td>
-                        <td><input type="file" name="file"/></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><input type="submit" value="Upload"/></td>
-                    </tr>
-                </table>
-            </form>
+            <div class="dropzone" id="examples">
+            </div>
         </section>
 
         <section class="card">
@@ -189,8 +188,28 @@
 <script src="/resources/plugins/select/jquery.nice-select.min.js"></script>
 <script src="/resources/plugins/slick/slick.min.js"></script>
 <script src="/resources/js/project.js"></script>
+<script src="/resources/plugins/dropzone/dropzone.js"></script>
 <script id="dsq-count-scr" src="//handy-nyushkevich-ru.disqus.com/count.js" async></script>
 <script>
+
+    Dropzone.autoDiscover = false;
+
+    $("#examples").dropzone({
+        url: "/personal",
+        paramName: "file",
+        uploadMultiple: true,
+        dictDefaultMessage: "Перетащите примеры своих работ в это окно",
+        addRemoveLinks: false
+    });
+
+    $("#avatar").dropzone({
+        url: "/personal/userPic",
+        paramName: "file",
+        uploadMultiple: false,
+        dictDefaultMessage: "Перетащите фото профиля в это окно",
+        addRemoveLinks: false
+    });
+
 
     $(document).ready(function () {
         $('.service-group .btn-del').on('click', function () {

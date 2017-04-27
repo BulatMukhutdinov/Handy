@@ -12,7 +12,6 @@
         <h1 class="company">Handy</h1>
 
         <nav class="header__nav">
-            <a class="link" th:text="#{nav.about}" th:href="@{/admin}"></a>
             <span sec:authorize="isAuthenticated()">
                     <a class="link" th:text="#{label.pages.logout}" th:href="@{/logout}"></a>
             </span>
