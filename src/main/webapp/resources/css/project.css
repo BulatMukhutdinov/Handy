@@ -212,13 +212,16 @@ input:-ms-input-placeholder
 {
     font: 14px 'FGB', Arial, sans-serif;
 
+    min-height: 100%;
     color: #000;
     background: #f8f8f8;
 }
 
 .page__body
 {
+    position: relative;
     min-width: 1220px;
+    min-height: 100%;
 }
 
 .wrapper
