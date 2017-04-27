@@ -91,6 +91,19 @@
                             <input class="input" name="price" type="text" th:value="${service.price}">
                             <i class="material-icons btn-del">close</i>
                         </div>
+                        
+                        <div class="control-group service-group service-template" style="display: none;">
+                            <input class="input" name="service" type="text">
+                            <select class="select" name="categorySelect">
+                                <option class="select__option" th:each="category : ${categories}"
+                                        th:value="${category.id}"
+                                        th:text="${category.name}">
+                                </option>
+                            </select>
+                            <input class="input" name="price" type="text" >
+                            <i class="material-icons btn-del">close</i>
+                        </div>
+                        
                     </div>
                     <button id="servicesBtn" class="btn btn-edit" th:text="#{btn.save}"></button>
                 </form>
@@ -180,36 +193,31 @@
 <script>
 
     $(document).ready(function () {
-        function removeServiceGroup() {
-            $('.service-group .btn-del').on('click', function () {
-                $(this).parent().remove();
-            });
-        }
+        $('.service-group .btn-del').on('click', function () {
+            $(this).parent().fadeOut().remove();
+        });
 
         $('.btn-add_action_service').on('click', function () {
-            var serviceGroup =
-                '<div class="control-group service-group">' +
-                '<input class="input" name="service" type="text" th:placeholder="#{service.description}">' +
-                '<select class="select" name="categorySelect">' +
-                ' <option class="select__option" th:each="category : ${categories}"' +
-                '  th:value="${category.id}"' +
-                '   th:text="${category.name}">' +
-                '     </option>' +
-                '    </select>' +
-                '    <input class="input" name="price" type="text" th:placeholder="#{service.price}">' +
-                '<i class="material-icons btn-del">close</i>' +
-                '</div>';
-            $(this).parent().parent().find('.form__inner').append(serviceGroup);
-            $('select').niceSelect();
-            removeServiceGroup();
+
+            $(".service-template").clone()
+                .removeClass("service-template")
+                .appendTo(".form__inner").fadeIn();
+
+            $(".close").click(function () {
+                $(this).parent().fadeOut().remove();
+            });
         });
+
+
         $("#servicesBtn").click(function () {
-            var data = $("#service_form").serialize();
+            var data  = $('#service_form').clone()
+                .find(".service-template").remove().end().serialize();
             $.post('/updateServices', data,
                 function (response) {
                     response.preventDefault();
                 }, 'json');
         });
+
         $("#aboutBtn").click(function () {
             var data = [];
             data.push({name: 'about', value: $('#aboutText').val()});
