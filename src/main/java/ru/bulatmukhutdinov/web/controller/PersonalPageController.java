@@ -88,17 +88,21 @@ public class PersonalPageController {
             serviceService.delete(service);
         }
         serviceSet = new HashSet<>();
-        for (int i = 0; i < services.length; i++) {
-            Service service = new Service();
-            service.setAccount(account);
-            service.setDescription(services[i]);
-            service.setCategory(categoryService.findById(Long.valueOf(categoriesSelected[i])));
-            service.setPrice(Integer.valueOf(prices[i]));
-            serviceSet.add(service);
+        if (services != null) {
+            for (int i = 0; i < services.length; i++) {
+                Service service = new Service();
+                service.setAccount(account);
+                service.setDescription(services[i]);
+                service.setCategory(categoryService.findById(Long.valueOf(categoriesSelected[i])));
+                service.setPrice(Integer.valueOf(prices[i]));
+                serviceSet.add(service);
+            }
         }
         for (Service service : serviceSet) {
             serviceService.save(service);
         }
+        account.setServices(serviceSet);
+        accountService.saveRegisteredAccount(account);
         return new GenericResponse("success");
     }
 
